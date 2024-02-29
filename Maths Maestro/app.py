@@ -1,2 +1,3 @@
-print("Hello World")
-# initial commit
+import streamlit as st
+
+st.write("Hello world")
