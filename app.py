@@ -2,6 +2,9 @@ import streamlit as st
 import os
 import string
 
+with open("static/styles.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 
 def is_username_valid(username):
 
@@ -38,7 +41,11 @@ def is_username_valid(username):
 
 
 st.write("Hello world")
-username = st.text_input("Username", placeholder="Enter a unique username")
-result, error_msg = is_username_valid(username)
-if result == False:
-    st.error(f"{error_msg}")
+username = st.text_input("Username")
+user_result, user_error = is_username_valid(username)
+if len(username) == 0:
+    st.info(f"Enter a username")
+    user_result = False
+else:
+    if user_result == False:
+        st.error(f"{user_error}")
