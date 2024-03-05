@@ -25,13 +25,13 @@ def is_username_valid(username):
 
     error_msg = ""
     if is_username_unique(username) == False:
-        error_msg = "Username already taken."
+        error_msg = "Username already taken"
         return (False, error_msg)
     elif len(username) > 20 or len(username) < 3:
-        error_msg = "Username can only be 3-20 chars long."
+        error_msg = "Username can only be 3-20 chars long"
         return (False, error_msg)
     elif has_invalid_chars(username) == False:
-        error_msg = "Username may only contain letters, numbers and _."
+        error_msg = "Username may only contain letters, numbers and _"
         return (False, error_msg)
     elif len([i for i in username if i in string.digits]) == len(username):
         error_msg = "Username may contain private information"
@@ -70,22 +70,37 @@ def is_password_valid(password):
 
 
 def is_email_valid(email):
-    # Function to check if an email string is valid
-    if has_special_chars(email):
-        # Checks if the email string contains at least 1 '.' and only 1 '@'
-        if email.count(".") != 0 and email.count("@") == 1:
-            # Checks if there is anything before the '@' symbol
-            before_at_symbol = len(email[: email.index("@")])
-            # Checks if there is anything after the '@'symbol
-            after_at_symbol = len(email[email.index("@") + 1 :])
-            if before_at_symbol > 0 and after_at_symbol > 0:
-                return True
-            else:
-                return False
+
+    def does_email_exist(email):
+        if has_special_chars(email):
+            # Checks if the email string contains at least 1 '.' and only 1 '@'
+            if email.count(".") != 0 and email.count("@") == 1:
+                # Checks if there is anything before the '@' symbol
+                before_at_symbol = len(email[: email.index("@")])
+                # Checks if there is anything after the '@'symbol
+                after_at_symbol = len(email[email.index("@") + 1 :])
+                if before_at_symbol > 0 and after_at_symbol > 0:
+                    return True
         else:
             return False
-    else:
+
+    def is_email_taken(email):
+        for i in os.listdir("user_data"):
+            with open(f"user_data/{i}", "r") as f:
+                content = f.readlines()[2][7:]
+                if content == email:
+                    return True
         return False
+
+    error_msg = ""
+    if does_email_exist(email) == False:
+        error_msg = "Email does not exist"
+        return (False, error_msg)
+    elif is_email_taken(email) == True:
+        error_msg = "Email already in use"
+        return (False, error_msg)
+    else:
+        return (True, error_msg)
 
 
 st.write("Hello world")
@@ -110,6 +125,14 @@ if len(email) == 0:
     st.info(f"Enter your email")
     email_result = False
 else:
-    email_result = is_email_valid(email)
+    email_result, email_error = is_email_valid(email)
     if email_result == False:
-        st.error("Email does not exist")
+        st.error(f"{email_error}")
+submit_button = st.button("Sign Up", type="secondary")
+if submit_button:
+    if user_result == True and email_result == True and pass_result == True:
+        st.success("Account Successfully Created")
+        with open(f"user_data/{username}.txt", "w") as f:
+            f.write(f"Username: {username}\nPassword: {password}\nEmail: {email}")
+    else:
+        st.warning("Not all the fields are valid")
