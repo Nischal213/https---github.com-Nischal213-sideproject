@@ -1,6 +1,9 @@
 import streamlit as st
 import os
 
+with open("static/styles.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 
 def does_username_exist(username):
     return bool(
@@ -36,3 +39,9 @@ else:
     print(pass_result)
     if pass_result == False:
         st.error("Invalid password")
+submit_button = st.button("Log In", type="secondary")
+if submit_button:
+    if user_result == True and pass_result == True:
+        st.success("Logged In")
+    else:
+        st.warning("Not all the fields are valid")

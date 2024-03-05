@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import string
+from streamlit_extras.switch_page_button import switch_page
 
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -138,5 +139,6 @@ if submit_button:
         st.success("Account Successfully Created")
         with open(f"user_data/{username}.txt", "w") as f:
             f.write(f"Username: {username}\nPassword: {password}\nEmail: {email}")
+        switch_page("login page")
     else:
         st.warning("Not all the fields are valid")
