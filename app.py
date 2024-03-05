@@ -12,8 +12,13 @@ def is_username_valid(username):
 
     def is_username_unique(str):
         return not (
-            [i for i in os.listdir("user_data") if i.removesuffix(".txt") == username]
+            [i for i in os.listdir("user_data") if i.removesuffix(".txt") == str]
         )
+        # Uses list comprehension to iterate over all files within the folder user_data
+        # If the username is matching with the name of one of the files , it is appended.
+        # An empty list means that the username is unique
+        # The list is converted to a boolean value so an empty list becomes 0 whilst
+        # a non empty list becomes 1
 
     error_msg = ""
     if is_username_unique(username) == False:
@@ -33,9 +38,7 @@ def is_username_valid(username):
 
 
 st.write("Hello world")
-username = st.text_input(
-    "Username", placeholder="Enter a unique username", max_chars=20
-)
-result, msg = is_username_valid(username)
+username = st.text_input("Username", placeholder="Enter a unique username")
+result, error_msg = is_username_valid(username)
 if result == False:
-    st.error(f"{msg}")
+    st.error(f"{error_msg}")
