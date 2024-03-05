@@ -129,6 +129,10 @@ else:
     if email_result == False:
         st.error(f"{email_error}")
 submit_button = st.button("Sign Up", type="secondary")
+st.markdown(
+    "<p> Already have an account? click <a href='/login_page' target='_self'>Here</a></p>",
+    unsafe_allow_html=True,
+)
 if submit_button:
     if user_result == True and email_result == True and pass_result == True:
         st.success("Account Successfully Created")
