@@ -40,12 +40,49 @@ def is_username_valid(username):
         return (True, error_msg)
 
 
+def has_special_chars(str):
+    return bool([i for i in str if i in string.punctuation])
+
+
+def is_password_valid(password):
+
+    def has_upper_chars(str):
+        return bool([i for i in str if i.isupper()])
+
+    def has_lower_chars(str):
+        return bool([i for i in str if i.islower()])
+
+    error_msg = ""
+    if len(password) < 8:
+        error_msg = "Password is must be at least 8 characters long"
+        return (False, error_msg)
+    elif has_special_chars(password) == False:
+        error_msg = "Password must have a special character"
+        return (False, error_msg)
+    elif has_lower_chars(password) == False:
+        error_msg = "Password must have at least 1 lowercase letter"
+        return (False, error_msg)
+    elif has_upper_chars(password) == False:
+        error_msg = "Password must have at least 1 uppercase letter"
+        return (False, error_msg)
+    else:
+        return (True, error_msg)
+
+
 st.write("Hello world")
-username = st.text_input("Username")
-user_result, user_error = is_username_valid(username)
+username = st.text_input("Username", max_chars=20)
 if len(username) == 0:
-    st.info(f"Enter a username")
+    st.info(f"Enter a unique username")
     user_result = False
 else:
+    user_result, user_error = is_username_valid(username)
     if user_result == False:
         st.error(f"{user_error}")
+password = st.text_input("Password", type="password")
+if len(password) == 0:
+    st.info(f"Enter a secure password")
+    pass_result = False
+else:
+    pass_result, pass_error = is_password_valid(password)
+    if pass_result == False:
+        st.error(f"{pass_error}")
