@@ -69,6 +69,25 @@ def is_password_valid(password):
         return (True, error_msg)
 
 
+def is_email_valid(email):
+    # Function to check if an email string is valid
+    if has_special_chars(email):
+        # Checks if the email string contains at least 1 '.' and only 1 '@'
+        if email.count(".") != 0 and email.count("@") == 1:
+            # Checks if there is anything before the '@' symbol
+            before_at_symbol = len(email[: email.index("@")])
+            # Checks if there is anything after the '@'symbol
+            after_at_symbol = len(email[email.index("@") + 1 :])
+            if before_at_symbol > 0 and after_at_symbol > 0:
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+
+
 st.write("Hello world")
 username = st.text_input("Username", max_chars=20)
 if len(username) == 0:
@@ -86,3 +105,11 @@ else:
     pass_result, pass_error = is_password_valid(password)
     if pass_result == False:
         st.error(f"{pass_error}")
+email = st.text_input("Email", max_chars=100)
+if len(email) == 0:
+    st.info(f"Enter your email")
+    email_result = False
+else:
+    email_result = is_email_valid(email)
+    if email_result == False:
+        st.error("Email does not exist")
