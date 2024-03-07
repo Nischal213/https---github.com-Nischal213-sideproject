@@ -1,5 +1,5 @@
-Username: JohnDoe
+Username: JaneDoe
 Password: Password!
-Email: sample@gmail.com
+Email: example@gmail.com
 Best points: None
 Best points difficulty: None

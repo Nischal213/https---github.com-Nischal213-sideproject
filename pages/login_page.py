@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+from streamlit_extras.switch_page_button import switch_page
 
 st.set_page_config(page_title="Math Maestro | Login Page")
 
@@ -38,6 +39,6 @@ st.markdown(
 )
 if submit_button:
     if user_result == True and pass_result == True:
-        st.success("Logged In")
+        switch_page("game page")
     else:
         st.warning("Not all the fields are valid")

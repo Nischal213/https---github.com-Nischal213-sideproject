@@ -96,7 +96,7 @@ def is_email_valid(email):
         for i in os.listdir("user_data"):
             with open(f"user_data/{i}", "r") as f:
                 content = f.readlines()[2][7:]
-                if content == email:
+                if content.strip() == email:
                     return True
         return False
 
@@ -136,9 +136,10 @@ st.markdown(
 )
 if submit_button:
     if user_result == True and email_result == True and pass_result == True:
-        st.success("Account Successfully Created")
         with open(f"user_data/{username}.txt", "w") as f:
-            f.write(f"Username: {username}\nPassword: {password}\nEmail: {email}")
+            f.write(
+                f"Username: {username}\nPassword: {password}\nEmail: {email}\nBest points: None\nBest points difficulty: None"
+            )
         switch_page("login page")
     else:
         st.warning("Not all the fields are valid")
