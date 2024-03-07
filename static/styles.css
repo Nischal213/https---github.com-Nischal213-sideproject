@@ -1,3 +1,54 @@
+/* hiding side navbar */
 .st-emotion-cache-1cypcdb.eczjsme11 {
     display: none;
+}
+
+/* hiding full screen option when image is hovered */
+.st-emotion-cache-e370rw.e1vs0wn31 {
+    display: none;
+}
+
+
+/* link text */
+#has_account {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+
+#has_account p {
+    font-size: 1.2rem;
+}
+
+
+/* button */
+.st-emotion-cache-19rxjzo.ef3psqc12 {
+    display: block;
+    margin: 1rem auto;
+    background-color: #bc13fe;
+}
+
+/* button text */
+.st-emotion-cache-19rxjzo.ef3psqc12 p {
+    font-size: 1.2rem;
+}
+
+/* button hover effect */
+.st-emotion-cache-19rxjzo.ef3psqc12:hover {
+    background-color: black;
+    border-color: #bc13fe;
+    color: #bc13fe;
+}
+
+/* input text names */
+.st-emotion-cache-sh2krr.e1nzilvr5 p{
+    font-size: 1.1rem;
+}
+
+.st-emotion-cache-1v0mbdj.e115fcil1 {
+    margin: 0 auto;
+}
+
+.st-emotion-cache-1v0mbdj.e115fcil1 img{
+    height: 6.25rem;
 }

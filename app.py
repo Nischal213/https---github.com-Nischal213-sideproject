@@ -3,6 +3,8 @@ import os
 import string
 from streamlit_extras.switch_page_button import switch_page
 
+st.set_page_config(page_title="Math Maestro | Register Page")
+
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
@@ -113,22 +115,24 @@ def is_email_valid(email):
         return ("", error_msg)
 
 
-st.write("Hello world")
-username = st.text_input("Username", max_chars=20)
+st.image("static/header.png")
+username = st.text_input(
+    "Username", max_chars=20, placeholder="Enter a unique username"
+)
 user_result, user_error = is_username_valid(username)
 if user_result == False:
     st.error(f"{user_error}")
-password = st.text_input("Password", type="password")
+password = st.text_input("Password", type="password", placeholder="Enter your password")
 pass_result, pass_error = is_password_valid(password)
 if pass_result == False:
     st.error(f"{pass_error}")
-email = st.text_input("Email", max_chars=100)
+email = st.text_input("Email", max_chars=100, placeholder="Enter a valid email")
 email_result, email_error = is_email_valid(email)
 if email_result == False:
     st.error(f"{email_error}")
 submit_button = st.button("Sign Up", type="secondary")
 st.markdown(
-    "<p> Already have an account? click <a href='/login_page' target='_self'>Here</a></p>",
+    "<div id = 'has_account'><p> Already have an account? click <a href='/login_page' target='_self'>Here</a></p></div>",
     unsafe_allow_html=True,
 )
 if submit_button:
