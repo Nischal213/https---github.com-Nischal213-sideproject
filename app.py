@@ -1,6 +1,5 @@
 import streamlit as st
 import os
-import string
 from streamlit_extras.switch_page_button import switch_page
 
 st.set_page_config(page_title="Math Maestro | Register Page")
@@ -11,34 +10,34 @@ with open("static/styles.css") as f:
 
 def is_username_valid(username):
 
-    def has_invalid_chars(str):
-        return bool(
-            [i for i in str if (i in string.punctuation and i != "_") or i.isspace()]
-        )
+    def has_invalid_chars(word):
+        return not (all((i == "_" or i.isalnum() for i in word)))
 
-    def is_username_unique(str):
-        return not (
-            [i for i in os.listdir("user_data") if i.removesuffix(".txt") == str]
-        )
-        # Uses list comprehension to iterate over all files within the folder user_data
-        # If the username is matching with the name of one of the files , it is appended.
-        # An empty list means that the username is unique
-        # The list is converted to a boolean value so an empty list becomes 0 whilst
-        # a non empty list becomes 1
+    def is_username_unique(word):
+        return all(i.removesuffix(".txt") != word for i in os.listdir("user_data"))
+
+    def only_numbers(word):
+        return all(i.isdigit() for i in word)
+
+    def only_one_underscode(word):
+        return word.count("_")
 
     error_msg = ""
     if username:
         if is_username_unique(username) == False:
             error_msg = "Username already taken"
             return (False, error_msg)
-        elif len(username) > 20 or len(username) < 3:
+        elif not (3 <= len(username) <= 20):
             error_msg = "Username can only be 3-20 chars long"
             return (False, error_msg)
         elif has_invalid_chars(username) == True:
             error_msg = "Username may only contain letters, numbers and _"
             return (False, error_msg)
-        elif len([i for i in username if i in string.digits]) == len(username):
+        elif only_numbers(username):
             error_msg = "Username may contain private information"
+            return (False, error_msg)
+        elif only_one_underscode(username) > 1:
+            error_msg = "Username may at most have one _"
             return (False, error_msg)
         else:
             return (True, error_msg)
@@ -46,17 +45,17 @@ def is_username_valid(username):
         return ("", error_msg)
 
 
-def has_special_chars(str):
-    return bool([i for i in str if i in string.punctuation])
+def has_special_chars(word):
+    return not (all(i.isalnum() for i in word))
 
 
 def is_password_valid(password):
 
-    def has_upper_chars(str):
-        return bool([i for i in str if i.isupper()])
+    def has_upper_chars(word):
+        return any(i.isupper() for i in word)
 
-    def has_lower_chars(str):
-        return bool([i for i in str if i.islower()])
+    def has_lower_chars(word):
+        return any(i.islower() for i in word)
 
     error_msg = ""
     if password:
