@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 /* hiding side navbar */
 .st-emotion-cache-1cypcdb.eczjsme11 {
     display: none;
@@ -8,6 +13,10 @@
     display: none;
 }
 
+/* hiding a pop up next to header when hovered */
+.st-emotion-cache-15zrgzn.e1nzilvr3 {
+    display: none;
+}
 
 /* link text */
 #has_account {
@@ -22,19 +31,20 @@
 
 
 /* button */
-.st-emotion-cache-19rxjzo.ef3psqc12 {
+.st-emotion-cache-nbt3vv.ef3psqc13 {
     display: block;
     margin: 1rem auto;
     background-color: #bc13fe;
+    border-color: #bc13fe;
 }
 
 /* button text */
-.st-emotion-cache-19rxjzo.ef3psqc12 p {
+.st-emotion-cache-nbt3vv.ef3psqc13 p {
     font-size: 1.2rem;
 }
 
 /* button hover effect */
-.st-emotion-cache-19rxjzo.ef3psqc12:hover {
+.st-emotion-cache-nbt3vv.ef3psqc13:hover {
     background-color: black;
     border-color: #bc13fe;
     color: #bc13fe;
@@ -52,4 +62,27 @@
 
 .st-emotion-cache-1v0mbdj.e115fcil1 img{
     height: 6.25rem;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+}
+
+#header h1{
+    text-align: center;
+}
+
+.nav.justify-content-center {
+    position: fixed;
+    top: 0;
+    z-index: 9999999999999;
+}
+
+.nav-link.active {
+    margin-left: 7rem;
+}
+
+.nav.justify-content-center a{
+    font-size: 1.3rem;
 }

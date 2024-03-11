@@ -129,7 +129,7 @@ email = st.text_input("Email", max_chars=100, placeholder="Enter a valid email")
 email_result, email_error = is_email_valid(email)
 if email_result == False:
     st.error(f"{email_error}")
-submit_button = st.button("Sign Up", type="secondary")
+submit_button = st.button("Sign Up", type="primary")
 st.markdown(
     "<div id = 'has_account'><p> Already have an account? click <a href='/login_page' target='_self'>Here</a></p></div>",
     unsafe_allow_html=True,
