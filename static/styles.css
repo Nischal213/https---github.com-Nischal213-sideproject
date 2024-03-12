@@ -73,6 +73,15 @@ body {
     text-align: center;
 }
 
+#sub-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+#sub-header h2 {
+    text-align: center;
+}
 .nav.justify-content-center {
     position: fixed;
     top: 0;
@@ -85,4 +94,101 @@ body {
 
 .nav.justify-content-center a{
     font-size: 1.3rem;
+}
+
+.difficulty-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.difficulty-content {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    width: 33%;
+    padding-bottom: 2rem;
+}
+
+.difficulty-content h1 {
+    font-family: 'Comic Sans MS';
+    text-align: center;
+}
+
+.difficulty-container p {
+    display: block;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    color: black;
+}
+
+#easy-content {
+    background: #32de84;
+}
+
+#easy-content h1 {
+    color: green;
+}
+
+#medium-content {
+    background: orange;
+}
+
+#medium-content h1 {
+    color: #FF6347; 
+}
+
+#hard-content {
+    background: red;
+}
+
+#hard-content h1 {
+    color: darkred;
+}
+
+.element-container:has(#easy-button) {
+    display: none;
+}
+
+.element-container:has(#easy-button) + div button {
+    background-color: green;
+    position: absolute;
+    transform: translate(4.8rem, -2.6rem);
+}
+
+.element-container:has(#easy-button) + div button:hover {
+    background-color: black;
+    border-color: green;
+    color: green;
+}
+
+.element-container:has(#medium-button) {
+    display: none;
+}
+
+.element-container:has(#medium-button) + div button {
+    background-color:  #FF6347;
+    position: absolute;
+    transform: translate(20.3rem, -3.6rem);
+}
+
+.element-container:has(#medium-button) + div button:hover {
+    background-color: black;
+    border-color: #FF6347;
+    color: #FF6347;
+}
+
+.element-container:has(#hard-button) {
+    display: none;
+}
+
+.element-container:has(#hard-button) + div button {
+    background-color: darkred;
+    position: absolute;
+    transform: translate(35.5rem, -4.6rem);
+}
+
+.element-container:has(#hard-button) + div button:hover {
+    background-color: black;
+    border-color: darkred;
+    color: darkred;
 }
