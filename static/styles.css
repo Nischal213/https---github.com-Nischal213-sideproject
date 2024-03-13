@@ -192,3 +192,12 @@ body {
     border-color: darkred;
     color: darkred;
 }
+
+.element-container:has(#question) {
+    display: none;
+}
+
+.element-container:has(#question) + div p{
+    text-align: center;
+    font-size: 3rem;
+}
