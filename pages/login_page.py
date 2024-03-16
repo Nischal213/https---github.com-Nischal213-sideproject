@@ -1,27 +1,29 @@
 import streamlit as st
-import os
+import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 
 st.set_page_config(page_title="Math Maestro | Login Page")
 
+# custom styling
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+df = pd.read_csv("test_csv/user_data.csv")
 
 
 def does_username_exist(username):
     if username:
-        return any(i.removesuffix(".txt") == username for i in os.listdir("user_data"))
+        return any(i == username for i in df["Username"])
     else:
         return ""
 
 
 def is_password_correct(password, username):
-    if does_username_exist(username):
-        with open(f"user_data/{username}.txt") as f:
-            content = f.readlines()[1][10:]
-            if password == content.strip():
-                return True
-    else:
+    try:
+        get_password = df[df["Username"] == f"{username}"]["Password"][0]
+        if password == get_password:
+            return True
+    except KeyError:
         return False
 
 

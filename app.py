@@ -1,11 +1,14 @@
 import streamlit as st
-import os
+import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 
 st.set_page_config(page_title="Math Maestro | Register Page")
 
+# custom styling
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+df = pd.read_csv("test_csv/user_data.csv")
 
 
 def is_username_valid(username):
@@ -13,8 +16,8 @@ def is_username_valid(username):
     def has_invalid_chars(word):
         return not (all((i == "_" or i.isalnum() for i in word)))
 
-    def is_username_unique(word):
-        return all(i.removesuffix(".txt") != word for i in os.listdir("user_data"))
+    def is_username_unique(username):
+        return all(i != username for i in df["Username"])
 
     def only_numbers(word):
         return all(i.isdigit() for i in word)
@@ -93,12 +96,7 @@ def is_email_valid(email):
             return False
 
     def is_email_taken(email):
-        for i in os.listdir("user_data"):
-            with open(f"user_data/{i}", "r") as f:
-                content = f.readlines()[2][7:]
-                if content.strip() == email:
-                    return True
-        return False
+        return any(i == email for i in df["Email"])
 
     error_msg = ""
     if email:
@@ -136,10 +134,16 @@ st.markdown(
 )
 if submit_button:
     if user_result == True and email_result == True and pass_result == True:
-        with open(f"user_data/{username}.txt", "w") as f:
-            f.write(
-                f"Username: {username}\nPassword: {password}\nEmail: {email}\nBest points: None\nBest points difficulty: None"
-            )
+        data = {
+            "Username": [f"{username}"],
+            "Password": [f"{password}"],
+            "Email": [f"{email}"],
+            "Easy_points": [0],
+            "Medium_points": [0],
+            "Hard_points": [0],
+        }
+        dataframe = pd.DataFrame(data)
+        dataframe.to_csv("test_csv/user_data.csv", index=False, mode="a", header=False)
         switch_page("login page")
     else:
         st.warning("Not all the fields are valid")

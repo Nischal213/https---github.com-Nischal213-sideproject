@@ -192,3 +192,49 @@ body {
     border-color: darkred;
     color: darkred;
 }
+
+.element-container:has(#question) {
+    display: none;
+}
+
+.element-container:has(#question) + div p{
+    text-align: center;
+    font-size: 3rem;
+}
+
+.element-container:has(#check-button) {
+    display: none;
+}
+
+.element-container:has(#check-button) + div button{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.element-container:has(#check-button) + div button p{
+    font-size: 1.2rem;
+}
+
+#info {
+    display: flex;
+    justify-content: center;
+}
+
+.element-container:has(#info-message) {
+    display: none;
+}
+
+.element-container:has(#info-message) + div p{
+    margin-left: 8.5rem;
+    font-size: 1.2rem;
+}
+
+.element-container:has(#error-message) {
+    display: none;
+}
+
+.element-container:has(#error-message) + div p{
+    margin-left: 4rem;
+    font-size: 1.2rem;
+}
