@@ -1,5 +1,0 @@
-Username: JohnDoe
-Password: Password!
-Email: sample@gmail.com
-Best points: None
-Best points difficulty: None

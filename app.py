@@ -8,7 +8,7 @@ st.set_page_config(page_title="Math Maestro | Register Page")
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-df = pd.read_csv("test_csv/user_data.csv")
+df = pd.read_csv("user_data/data.csv")
 
 
 def is_username_valid(username):
@@ -143,7 +143,7 @@ if submit_button:
             "Hard_points": [0],
         }
         dataframe = pd.DataFrame(data)
-        dataframe.to_csv("test_csv/user_data.csv", index=False, mode="a", header=False)
+        dataframe.to_csv("user_data/data.csv", index=False, mode="a", header=False)
         switch_page("login page")
     else:
         st.warning("Not all the fields are valid")
