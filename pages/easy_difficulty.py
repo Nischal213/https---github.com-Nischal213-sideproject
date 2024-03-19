@@ -2,6 +2,7 @@ import streamlit as st
 import random
 from streamlit_extras.switch_page_button import switch_page
 import time
+import pandas as pd
 
 
 # function to check if a variable is a type of the parameter
@@ -27,19 +28,24 @@ def generate_random_question():
         return f"What is {num1} {random_op} {num2}?", answer
 
 
+def animation(before_animation, after_animation, box_name, duration=1):
+    box_name.write(f"{before_animation}", unsafe_allow_html=True)
+    time.sleep(duration)
+    box_name.write(f"{after_animation}", unsafe_allow_html=True)
+
+
 # custom styling
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-"""
-IMPORTANT , as of now , if the user dies then goes back to the same difficulty, the lives will remain the same
-to fix this clear the session keys. But before this, make sure to title this problem as problem4
-"""
-
+df = pd.read_csv("user_data/data.csv")
 st.markdown(
     "<div id = 'sub-header'><h2><span style='color:green;'>Easy Difficulty</h2></span></div>",
     unsafe_allow_html=True,
 )
+# name of all the keys added in the session
+keys = ["easy_question", "easy_ans", "easy_points", "easy_lives"]
+
 # storing user data and questions in the session
 if "easy_question" not in st.session_state:
     st.session_state["easy_question"], st.session_state["easy_ans"] = (
@@ -57,7 +63,11 @@ user_ans = input.text_input(
 )
 info_box = st.empty()
 info_box.write(
-    f"<div id = 'info'><h3>Points : {st.session_state['easy_points']}</h3><h3>Lives : {st.session_state['easy_lives']}</h3></div>",
+    f"""
+    <div id = 'info'>
+        <h3>Points : {st.session_state['easy_points']}</h3>
+        <h3>Lives : {st.session_state['easy_lives']}</h3>
+    </div>""",
     unsafe_allow_html=True,
 )
 st.markdown('<span id="check-button"></span>', unsafe_allow_html=True)
@@ -70,39 +80,66 @@ if button:
     # checks if the user input is an int or float
     if is_type(user_ans, int) or is_type(user_ans, float):
         st.markdown(
-            "<style>.element-container:has(#check-button) + div button{display:none;}</style>",
+            """
+            <style>
+            .element-container:has(#check-button) + div button{
+                display:none;
+            }
+            </style>""",
             unsafe_allow_html=True,
         )
         # checks if the user's answer is correct
         if round(float(user_ans), 1) == round(float(st.session_state["easy_ans"]), 1):
             st.session_state["easy_points"] += 1
-            info_box.write(
-                f"<div id = 'info'><h3 style='color:green;'>+1</h3><h3>Lives : {st.session_state['easy_lives']}</h3></div>",
-                unsafe_allow_html=True,
-            )
-            time.sleep(1)
-            info_box.write(
-                f"<div id = 'info'><h3>Points : {st.session_state['easy_points']}</h3><h3>Lives : {st.session_state['easy_lives']}</h3></div>",
-                unsafe_allow_html=True,
-            )
+            # Before and after variables contain inline styling so its a bit long
+            before_msg = f"""
+            <div id = 'info'>
+                <h3 style='color:green;'>+1</h3>
+                <h3>Lives : {st.session_state['easy_lives']}</h3>
+            </div>"""
+            after_msg = f"""
+            <div id = 'info'>
+                <h3>Points : {st.session_state['easy_points']}</h3>
+                <h3>Lives : {st.session_state['easy_lives']}</h3>
+            </div>"""
+            animation(before_msg, after_msg, info_box)
         else:
             incorrect_answer.error(
                 f"Incorrect! The answer was {st.session_state['easy_ans']}"
             )
             st.session_state["easy_lives"] -= 1
             if st.session_state["easy_lives"] == 0:
+                get_points = df.loc[
+                    df["Username"] == st.session_state["user"], "Easy_points"
+                ][0]
+                if get_points < st.session_state["easy_points"]:
+                    # updates the user's Easy_points score
+                    df.loc[
+                        df["Username"] == st.session_state["user"], "Easy_points"
+                    ] = st.session_state["easy_points"]
+                    df.to_csv("user_data/data.csv", index=False)
+                for key in keys:
+                    # deletes all the added session keys
+                    del st.session_state[key]
                 switch_page("game page")
-            info_box.write(
-                f"<div id = 'info'><h3>Points : {st.session_state['easy_points']}</h3><h3 style='color:red;'>-1</h3></div>",
-                unsafe_allow_html=True,
-            )
-            time.sleep(1)
-            info_box.write(
-                f"<div id = 'info'><h3>Points : {st.session_state['easy_points']}</h3><h3>Lives : {st.session_state['easy_lives']}</h3></div>",
-                unsafe_allow_html=True,
-            )
+            before_msg = f"""
+            <div id='info'>
+                <h3>Points : {st.session_state['easy_points']}</h3>
+                <h3 style='color:red;'>-1</h3>
+            </div>"""
+            after_msg = f"""
+            <div id = 'info'>
+                <h3>Points : {st.session_state['easy_points']}</h3>
+                <h3>Lives : {st.session_state['easy_lives']}</h3>
+            </div>"""
+            animation(before_msg, after_msg, info_box)
         st.markdown(
-            "<style>.element-container:has(#check-button) + div button{display:flex;}</style>",
+            """
+            <style>
+            .element-container:has(#check-button) + div button{
+                display:flex;
+            }
+            </style>""",
             unsafe_allow_html=True,
         )
         # generates a new random question

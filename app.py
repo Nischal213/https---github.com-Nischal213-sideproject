@@ -134,6 +134,8 @@ st.markdown(
 )
 if submit_button:
     if user_result == True and email_result == True and pass_result == True:
+        if "user" not in st.session_state:
+            st.session_state["user"] = username
         data = {
             "Username": [f"{username}"],
             "Password": [f"{password}"],

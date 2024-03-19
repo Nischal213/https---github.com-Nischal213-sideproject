@@ -20,7 +20,7 @@ def does_username_exist(username):
 
 def is_password_correct(password, username):
     try:
-        get_password = df[df["Username"] == f"{username}"]["Password"][0]
+        get_password = df.loc[df["Username"] == f"{username}", "Password"][0]
         if password == get_password:
             return True
     except KeyError:
@@ -41,6 +41,8 @@ st.markdown(
 )
 if submit_button:
     if user_result == True and pass_result == True:
+        if "user" not in st.session_state:
+            st.session_state["user"] = username
         switch_page("game page")
     else:
         st.warning("Not all the fields are valid")
