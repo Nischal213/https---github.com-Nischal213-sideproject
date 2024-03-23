@@ -51,7 +51,7 @@ body {
 }
 
 /* input text names */
-.st-emotion-cache-sh2krr.e1nzilvr5 p{
+.st-emotion-cache-sh2krr.e1nzilvr5 p {
     font-size: 1.1rem;
 }
 
@@ -60,7 +60,7 @@ body {
     margin: 0 auto;
 }
 
-.st-emotion-cache-1v0mbdj.e115fcil1 img{
+.st-emotion-cache-1v0mbdj.e115fcil1 img {
     height: 6.25rem;
 }
 
@@ -69,7 +69,7 @@ body {
     justify-content: center;
 }
 
-#header h1{
+#header h1 {
     text-align: center;
 }
 
@@ -92,7 +92,7 @@ body {
     margin-left: 7rem;
 }
 
-.nav.justify-content-center a{
+.nav.justify-content-center a {
     font-size: 1.3rem;
 }
 
@@ -197,7 +197,7 @@ body {
     display: none;
 }
 
-.element-container:has(#question) + div p{
+.element-container:has(#question) + div p {
     text-align: center;
     font-size: 3rem;
 }
@@ -206,13 +206,13 @@ body {
     display: none;
 }
 
-.element-container:has(#check-button) + div button{
+.element-container:has(#check-button) + div button {
     display: flex;
     margin-left: auto;
     margin-right: auto;
 }
 
-.element-container:has(#check-button) + div button p{
+.element-container:has(#check-button) + div button p {
     font-size: 1.2rem;
 }
 
@@ -225,7 +225,7 @@ body {
     display: none;
 }
 
-.element-container:has(#info-message) + div p{
+.element-container:has(#info-message) + div p {
     margin-left: 8.5rem;
     font-size: 1.2rem;
 }
@@ -234,7 +234,16 @@ body {
     display: none;
 }
 
-.element-container:has(#error-message) + div p{
+.element-container:has(#error-message) + div p {
     margin-left: 4rem;
     font-size: 1.2rem;
+}
+
+.katex-html {
+    font-size: 2rem;
+}
+
+#header_error h4{
+    text-align: center;
+    padding-right: 4rem;
 }

@@ -36,6 +36,9 @@ def animation(before_animation, after_animation, box_name, duration=1):
     box_name.write(f"{after_animation}", unsafe_allow_html=True)
 
 
+if "user" not in st.session_state:
+    switch_page("error page")
+
 st.set_page_config(page_title="Math Maestro | Easy Mode")
 
 # custom styling

@@ -1,6 +1,9 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 
+if "user" not in st.session_state:
+    switch_page("error page")
+
 st.set_page_config(page_title="Math Maestro | Game Page")
 
 # adding bootstrap styling
