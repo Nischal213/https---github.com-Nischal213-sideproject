@@ -1,4 +1,5 @@
 import random
+import streamlit as st
 
 
 def integrate():
@@ -56,7 +57,8 @@ def powers():
         for i in range(10):
             number = number**0.5
 
-        return (number - 1) * 1024
+        # No need to multiply by 1024 as both numbers will be multiplied by 1024
+        return number - 1
 
     log_result = natural_log_approximation(result)
     log_base = natural_log_approximation(base)
@@ -65,4 +67,11 @@ def powers():
     return equation, round(answer, 1)
 
 
-print(powers())
+# Differentiation
+st.latex(r"\frac{\mathrm{d}y}{\mathrm{d}x}(x)|x=2")
+
+# Integration
+st.latex(r"\int_a^b \! (y = mx + c) \, \mathrm{d}x")
+
+# Logarithms
+st.latex(r"\log_e(2x^5)")
