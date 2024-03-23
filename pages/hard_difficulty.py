@@ -1,5 +1,6 @@
 import random
 import streamlit as st
+import streamlit as st
 
 
 def integrate():
@@ -9,7 +10,13 @@ def integrate():
         random.randint(5, 7),
         random.randint(2, 4),
     )
-    equation = f"y = ∫ [{upper_interval},{lower_interval}] (x**{bigger_power} + x**{lower_power}) dx"
+    latex_equation = r"\int_{z}^{y} (x^{a} + x^{b}) dx"
+    equation = (
+        latex_equation.replace("z", f"{lower_interval}")
+        .replace("y", f"{upper_interval}")
+        .replace("a", f"{bigger_power}")
+        .replace("b", f"{lower_power}")
+    )
     bigger_power += 1
     lower_power += 1
     upper_antiderivative = (upper_interval**bigger_power) / bigger_power + (
@@ -30,25 +37,31 @@ def differentiate():
         random.randint(5, 7),
         random.randint(2, 4),
     )
-    equation = f"y = dy/dx (x**{bigger_power} + x**{lower_power}) | x = {value_x}"
-    answer = (bigger_power * (value_x) ** (bigger_power - 1)) + (
-        lower_power * (value_x) ** (lower_power - 1)
+    latex_equation = r"\frac {dy}{dx} \, (x^{m} + x^{b}) \, \vert_{\,x={k}}"
+    equation = (
+        latex_equation.replace("m", f"{bigger_power}")
+        .replace("b", f"{lower_power}")
+        .replace("k", f"{value_x}")
     )
+    upper_derivative = bigger_power * (value_x) ** (bigger_power - 1)
+    lower_derivative = lower_power * (value_x) ** (lower_power - 1)
+    answer = upper_derivative + lower_derivative
     return equation, round(answer, 1)
 
 
 def logarithmics():
     base, exponent = random.randint(2, 5), random.randint(0, 5)
-    equation = f"log{base}(x) = {exponent} "
+    latex_equation = r"\log_y (x) = k"
+    equation = latex_equation.replace("y", f"{base}").replace("k", f"{exponent}")
 
     answer = base**exponent
-
     return equation, answer
 
 
 def powers():
     base, result = random.randint(2, 10), round(random.uniform(1, 10), 1)
-    equation = f"{base}**x = {result}"
+    latex_equation = r"m^x = k"
+    equation = latex_equation.replace("m", f"{base}").replace("k", f"{result}")
 
     def natural_log_approximation(number):
         # Reference:
