@@ -93,7 +93,7 @@ if button:
         )
         # checks if the user's answer is correct
         if round(float(user_ans), 1) == round(float(st.session_state["ans"]), 1):
-            st.session_state["easy_points"] += 1
+            st.session_state["points"] += 1
             # Before and after variables contain inline styling so its a bit long
             before_msg = f"""
             <div id = 'info'>

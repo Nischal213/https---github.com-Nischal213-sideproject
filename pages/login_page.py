@@ -20,10 +20,10 @@ def does_username_exist(username):
 
 def is_password_correct(password, username):
     try:
-        get_password = df.loc[df["Username"] == f"{username}", "Password"][0]
-        if password == get_password:
+        get_password = df.loc[df["Username"] == f"{username}", "Password"]
+        if password == get_password.values[0]:
             return True
-    except KeyError:
+    except (KeyError, IndexError):
         return False
 
 

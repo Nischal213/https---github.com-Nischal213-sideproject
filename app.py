@@ -136,16 +136,9 @@ if submit_button:
     if user_result == True and email_result == True and pass_result == True:
         if "user" not in st.session_state:
             st.session_state["user"] = username
-        data = {
-            "Username": [f"{username}"],
-            "Password": [f"{password}"],
-            "Email": [f"{email}"],
-            "Easy_points": [0],
-            "Medium_points": [0],
-            "Hard_points": [0],
-        }
-        dataframe = pd.DataFrame(data)
-        dataframe.to_csv("user_data/data.csv", index=False, mode="a", header=False)
+        with open("user_data/data.csv", "a") as f:
+            f.write("\n")
+            f.write(f"{username},{password},{email},0,0,0")
         switch_page("login page")
     else:
         st.warning("Not all the fields are valid")
