@@ -5,6 +5,10 @@ from streamlit_extras.switch_page_button import switch_page
 st.set_page_config(page_title="Math Maestro | Register Page")
 
 # custom styling
+with open("static/hide-nav.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+# custom styling
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
@@ -137,8 +141,8 @@ if submit_button:
         if "user" not in st.session_state:
             st.session_state["user"] = username
         with open("user_data/data.csv", "a") as f:
-            f.write("\n")
             f.write(f"{username},{password},{email},0,0,0")
+            f.write("\n")
         switch_page("login page")
     else:
         st.warning("Not all the fields are valid")

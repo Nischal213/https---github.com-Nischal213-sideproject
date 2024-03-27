@@ -1,6 +1,9 @@
 Username,Password,Email,Easy_points,Medium_points,Hard_points
-JohnDoe,Sample123!,JohnDoe@gmail.com,6,2,5
-JaneDoe,Sample123!,JaneDoe@gmail.com,0,0,0
-BobJohnSon,Sample123!,BobJohnSon@gmail.com,0,0,0
-Hello,Hello123@,Hello@gmail.com,0,0,0
-BobJohnson,BobJohnson1@,BobJohnson@gmail.com,0,0,0
+JohnDoe,Sample123!,JohnDoe@gmail.com,6.0,2.0,5.0
+JaneDoe,Sample123!,JaneDoe@gmail.com,0.0,0.0,0.0
+BobJohnSon,Sample123!,BobJohnSon@gmail.com,0.0,0.0,0.0
+Hello,Hello123@,Hello@gmail.com,0.0,0.0,0.0
+BobJohnson,BobJohnson1@,BobJohnson@gmail.com,3.0,0.0,0.0
+helloworld,helloworld123@H,helloworld@gmail.com,2.0,0.0,0.0
+testbot123,testbot123@T,testbot123@gmail.com,0.0,0.0,0.0
+Nischal_Gurung,Proplayer!,Nischal_Gurung@gmail.com,20.0,10.0,0.0

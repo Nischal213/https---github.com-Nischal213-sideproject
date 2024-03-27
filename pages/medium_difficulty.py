@@ -58,12 +58,23 @@ if "user" not in st.session_state:
 st.set_page_config(page_title="Math Maestro | Medium Mode")
 
 # custom styling
+with open("static/hide-nav.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+# custom styling
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 df = pd.read_csv("user_data/data.csv")
 st.markdown(
-    "<div id = 'sub-header'><h2><span style='color:#FF6347;'>Medium Difficulty</h2></span></div>",
+    """
+    <div id = 'sub-header'>
+        <h2>
+            <span style='color:#FF6347;'>
+            Medium Difficulty
+            </span>
+        </h2>
+    </div>""",
     unsafe_allow_html=True,
 )
 # name of all the keys added in the session
@@ -72,10 +83,11 @@ keys = ["question", "ans", "one_dp", "points", "lives"]
 # storing user data and questions in the session
 if "question" not in st.session_state:
     question, answer, one_dp = generate_random_question()
-    st.session_state["question"] = question
-    st.session_state["ans"] = answer
-    st.session_state["one_dp"] = one_dp
+    st.session_state["question"], st.session_state["ans"] = question, answer
+    st.session_state["one_dp"], st.session_state["stored_points"] = one_dp, 0
     st.session_state["points"], st.session_state["lives"] = 0, 4
+    st.session_state["difficulty"], st.session_state["asked_questions"] = "Medium", 0
+
 st.markdown('<span id="question"></span>', unsafe_allow_html=True)
 question_box = st.empty()
 question_box.write(f"<p>{st.session_state['question']}</p>", unsafe_allow_html=True)
@@ -116,6 +128,7 @@ if button:
         )
         # checks if the user's answer is correct
         if round(float(user_ans), 1) == round(float(st.session_state["ans"]), 1):
+            st.session_state["asked_questions"] += 1
             st.session_state["points"] += 1
             # Before and after variables contain inline styling so its a bit long
             before_msg = f"""
@@ -133,21 +146,29 @@ if button:
             incorrect_answer.error(
                 f"Incorrect! The answer was {st.session_state['ans']}"
             )
+            st.session_state["asked_questions"] += 1
             st.session_state["lives"] -= 1
             if st.session_state["lives"] == 0:
                 get_points = df.loc[
                     df["Username"] == st.session_state["user"], "Medium_points"
-                ][0]
-                if get_points < st.session_state["points"]:
+                ]
+                for i in get_points:
+                    if i > st.session_state["points"]:
+                        change_score = False
+                    else:
+                        change_score = True
+
+                if change_score:
                     # updates the user's Medium_points score
                     df.loc[
                         df["Username"] == st.session_state["user"], "Medium_points"
                     ] = st.session_state["points"]
                     df.to_csv("user_data/data.csv", index=False)
+                st.session_state["stored_points"] = st.session_state["points"]
                 for key in keys:
                     # deletes all the added session keys
                     del st.session_state[key]
-                switch_page("game page")
+                switch_page("game over")
             before_msg = f"""
             <div id='info'>
                 <h3>Points : {st.session_state['points']}</h3>

@@ -3,11 +3,6 @@ body {
     padding: 0;
 }
 
-/* hiding side navbar */
-.st-emotion-cache-1cypcdb.eczjsme11 {
-    display: none;
-}
-
 /* hiding full screen option when image is hovered */
 .st-emotion-cache-e370rw.e1vs0wn31 {
     display: none;
@@ -40,6 +35,7 @@ body {
 
 /* button text */
 .st-emotion-cache-nbt3vv.ef3psqc13 p {
+    font-family: 'Comic Sans MS';
     font-size: 1.2rem;
 }
 
@@ -70,6 +66,7 @@ body {
 }
 
 #header h1 {
+    font-family: 'Comic Sans MS';
     text-align: center;
 }
 
@@ -80,6 +77,7 @@ body {
 }
 
 #sub-header h2 {
+    font-family: 'Comic Sans MS';
     text-align: center;
 }
 .nav.justify-content-center {
@@ -198,6 +196,7 @@ body {
 }
 
 .element-container:has(#question) + div p {
+    font-family: 'Comic Sans MS';
     text-align: center;
     font-size: 3rem;
 }
@@ -221,12 +220,17 @@ body {
     justify-content: center;
 }
 
+#info h3 {
+    font-family: 'Comic Sans MS';
+}
+
 .element-container:has(#info-message) {
     display: none;
 }
 
 .element-container:has(#info-message) + div p {
-    margin-left: 8.5rem;
+    font-family: 'Comic Sans MS';
+    margin-left: 8rem;
     font-size: 1.2rem;
 }
 
@@ -235,6 +239,7 @@ body {
 }
 
 .element-container:has(#error-message) + div p {
+    font-family: 'Comic Sans MS';
     margin-left: 4rem;
     font-size: 1.2rem;
 }
@@ -246,4 +251,29 @@ body {
 #header_error h4{
     text-align: center;
     padding-right: 4rem;
+}
+
+#game-over-header h1{
+    text-align: center;
+    color: red;
+    font-family: 'Comic Sans MS';
+}
+
+.element-container:has(#user-stats) {
+    display: none;
+}
+
+.element-container:has(#user-stats) + div img {
+    display: block;
+    height: 20rem;
+    max-width: 25rem;
+    margin-right: 20rem;
+    margin-top: 4rem;;
+}
+
+#game-stats {
+    position: absolute;
+    width: 10rem;
+    transform: translate(30rem, -15rem);
+    text-align: center;
 }
