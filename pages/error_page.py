@@ -13,3 +13,6 @@ st.write(
     "<div id = 'header_error'><h4>Click <a href='http://localhost:8501/' target='_self'> here </a> to be redirected to the main page </h4></div>",
     unsafe_allow_html=True,
 )
+
+#extracted_df = df[["Username", "Easy_points"]].sort_values(by="Easy_points", ascending=False)
+#top_3 = extracted_df[:3]
