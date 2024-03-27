@@ -14,5 +14,7 @@ st.write(
     unsafe_allow_html=True,
 )
 
-#extracted_df = df[["Username", "Easy_points"]].sort_values(by="Easy_points", ascending=False)
-#top_3 = extracted_df[:3]
+extracted_df = df[["Username", "Easy_points"]].sort_values(by="Easy_points", ascending=False)
+top_3 = extracted_df[:3]
+for i , j in zip(top_3["Username"] , top_3["Easy_points"]):
+    print(i , j)
