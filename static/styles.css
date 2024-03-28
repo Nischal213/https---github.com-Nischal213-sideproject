@@ -3,6 +3,11 @@ body {
     padding: 0;
 }
 
+/* hiding side navbar */
+.st-emotion-cache-1cypcdb.eczjsme11 {
+    display: none;
+}
+
 /* hiding full screen option when image is hovered */
 .st-emotion-cache-e370rw.e1vs0wn31 {
     display: none;
@@ -80,6 +85,7 @@ body {
     font-family: 'Comic Sans MS';
     text-align: center;
 }
+
 .nav.justify-content-center {
     position: fixed;
     top: 0;
@@ -132,7 +138,7 @@ body {
 }
 
 #medium-content h1 {
-    color: #FF6347; 
+    color: #FF6347;
 }
 
 #hard-content {
@@ -147,13 +153,13 @@ body {
     display: none;
 }
 
-.element-container:has(#easy-button) + div button {
+.element-container:has(#easy-button)+div button {
     background-color: green;
     position: absolute;
     transform: translate(4.8rem, -2.6rem);
 }
 
-.element-container:has(#easy-button) + div button:hover {
+.element-container:has(#easy-button)+div button:hover {
     background-color: black;
     border-color: green;
     color: green;
@@ -163,13 +169,13 @@ body {
     display: none;
 }
 
-.element-container:has(#medium-button) + div button {
-    background-color:  #FF6347;
+.element-container:has(#medium-button)+div button {
+    background-color: #FF6347;
     position: absolute;
     transform: translate(20.3rem, -3.6rem);
 }
 
-.element-container:has(#medium-button) + div button:hover {
+.element-container:has(#medium-button)+div button:hover {
     background-color: black;
     border-color: #FF6347;
     color: #FF6347;
@@ -179,13 +185,13 @@ body {
     display: none;
 }
 
-.element-container:has(#hard-button) + div button {
+.element-container:has(#hard-button)+div button {
     background-color: darkred;
     position: absolute;
     transform: translate(35.5rem, -4.6rem);
 }
 
-.element-container:has(#hard-button) + div button:hover {
+.element-container:has(#hard-button)+div button:hover {
     background-color: black;
     border-color: darkred;
     color: darkred;
@@ -195,7 +201,7 @@ body {
     display: none;
 }
 
-.element-container:has(#question) + div p {
+.element-container:has(#question)+div p {
     font-family: 'Comic Sans MS';
     text-align: center;
     font-size: 3rem;
@@ -205,13 +211,13 @@ body {
     display: none;
 }
 
-.element-container:has(#check-button) + div button {
+.element-container:has(#check-button)+div button {
     display: flex;
     margin-left: auto;
     margin-right: auto;
 }
 
-.element-container:has(#check-button) + div button p {
+.element-container:has(#check-button)+div button p {
     font-size: 1.2rem;
 }
 
@@ -228,7 +234,7 @@ body {
     display: none;
 }
 
-.element-container:has(#info-message) + div p {
+.element-container:has(#info-message)+div p {
     font-family: 'Comic Sans MS';
     margin-left: 8rem;
     font-size: 1.2rem;
@@ -238,7 +244,7 @@ body {
     display: none;
 }
 
-.element-container:has(#error-message) + div p {
+.element-container:has(#error-message)+div p {
     font-family: 'Comic Sans MS';
     margin-left: 4rem;
     font-size: 1.2rem;
@@ -248,12 +254,12 @@ body {
     font-size: 2rem;
 }
 
-#header_error h4{
+#header_error h4 {
     text-align: center;
     padding-right: 4rem;
 }
 
-#game-over-header h1{
+#game-over-header h1 {
     text-align: center;
     color: red;
     font-family: 'Comic Sans MS';
@@ -263,12 +269,13 @@ body {
     display: none;
 }
 
-.element-container:has(#user-stats) + div img {
+.element-container:has(#user-stats)+div img {
     display: block;
     height: 20rem;
     max-width: 25rem;
     margin-right: 20rem;
-    margin-top: 4rem;;
+    margin-top: 4rem;
+    ;
 }
 
 #game-stats {
@@ -276,4 +283,44 @@ body {
     width: 10rem;
     transform: translate(30rem, -15rem);
     text-align: center;
+}
+
+.element-container:has(#leaderboards) {
+    display: none;
+}
+
+.element-container:has(#leaderboards)+div p {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.element-container:has(#lb-header) {
+    display: none;
+}
+
+.element-container:has(#lb-header)+div p {
+    text-align: center;
+    font-size: 3rem;
+    color: #007bff;
+    text-decoration: underline;
+    text-underline-position: under;
+    margin-bottom: 2rem;
+}
+
+.element-container:has(#lb-box) {
+    display: none;
+}
+
+.element-container:has(#lb-box)+div p {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.element-container:has(#easy-btn) {
+    display: none;
+}
+
+.element-container:has(#easy-btn)+div button {
+    border: 1px #007bff solid;
+    transform: translate(10rem, 20rem);
 }
