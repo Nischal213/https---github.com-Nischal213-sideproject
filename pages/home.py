@@ -49,18 +49,29 @@ def leaderboards():
         )
         top_3_usernames = list(extracted_df[:3]["Username"])
         top_3_points = list(extracted_df["Easy_points"])
-        count = 0
-        content = ""
-        for i, j in combine_lists(top_3_usernames, top_3_points):
-            st.markdown('<span id="leaderboards"></span>', unsafe_allow_html=True)
-            if count == 0:
-                content += f"🥇<span style='color:#FFD700;' id='leaderboards'>{i} scored {int(j)} in easy difficulty</span>"
-            elif count == 1:
-                content += f"🥈<span style='color:#C0C0C0;' id='leaderboards'>{i} scored {int(j)} in easy difficulty</span>"
-            elif count == 2:
-                content += f"🥉<span style='color:#CD7F32 ;'id='leaderboards'>{i} scored {int(j)} in easy difficulty</span>"
-            count += 1
-        return content
+        combined_lst = combine_lists(top_3_usernames, top_3_points)
+        st.write(
+            f"""
+            <div class = 'easy-dif' >
+                <div>
+                    🥇<span style='color:#FFD700;' id='leaderboards'>
+                    {combined_lst[0][0]} scored {int(combined_lst[0][1])} points in easy difficulty
+                    </span>
+                </div>
+                <div>
+                    🥈<span style='color:#C0C0C0;' id='leaderboards'>
+                    {combined_lst[1][0]} scored {int(combined_lst[1][1])} points in easy difficulty
+                    </span>
+                </div>
+                <div>
+                    🥉<span style='color:#CD7F32;' id='leaderboards'>
+                    {combined_lst[2][0]} scored {int(combined_lst[2][1])} points in easy difficulty
+                    </span>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
     def medium():
         extracted_df = df[["Username", "Medium_points"]].sort_values(
@@ -68,26 +79,29 @@ def leaderboards():
         )
         top_3_usernames = list(extracted_df[:3]["Username"])
         top_3_points = list(extracted_df["Medium_points"])
-        count = 0
-        for i, j in combine_lists(top_3_usernames, top_3_points):
-            st.markdown('<span id="leaderboards"></span>', unsafe_allow_html=True)
-            if count == 0:
-                st.write(
-                    f"🥇<span style='color:#FFD700;'>{i} scored {int(j)} in medium difficulty</span>",
-                    unsafe_allow_html=True,
-                )
-            elif count == 1:
-                st.write(
-                    f"🥈<span style='color:#C0C0C0;'>{i} scored {int(j)} in medium difficulty</span>",
-                    unsafe_allow_html=True,
-                )
-            elif count == 2:
-                st.write(
-                    f"🥉<span style='color:#CD7F32 ;'>{i} scored {int(j)} in medium difficulty</span>",
-                    unsafe_allow_html=True,
-                )
-            count += 1
-        return ""
+        combined_lst = combine_lists(top_3_usernames, top_3_points)
+        st.write(
+            f"""
+            <div class = 'medium-dif'>
+                <div>
+                    🥇<span style='color:#FFD700;' id='leaderboards'>
+                    {combined_lst[0][0]} scored {int(combined_lst[0][1])} points in medium difficulty
+                    </span>
+                </div>
+                <div>
+                    🥈<span style='color:#C0C0C0;' id='leaderboards'>
+                    {combined_lst[1][0]} scored {int(combined_lst[1][1])} points in medium difficulty
+                    </span>
+                </div>
+                <div>
+                    🥉<span style='color:#CD7F32;' id='leaderboards'>
+                    {combined_lst[2][0]} scored {int(combined_lst[2][1])} points in medium difficulty
+                    </span>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
     def hard():
         extracted_df = df[["Username", "Hard_points"]].sort_values(
@@ -95,53 +109,72 @@ def leaderboards():
         )
         top_3_usernames = list(extracted_df[:3]["Username"])
         top_3_points = list(extracted_df["Hard_points"])
-        count = 0
-        for i, j in combine_lists(top_3_usernames, top_3_points):
-            st.markdown('<span id="leaderboards"></span>', unsafe_allow_html=True)
-            if count == 0:
-                st.write(
-                    f"🥇<span style='color:#FFD700;'>{i} scored {int(j)} in hard difficulty</span>",
-                    unsafe_allow_html=True,
-                )
-            elif count == 1:
-                st.write(
-                    f"🥈<span style='color:#C0C0C0;'>{i} scored {int(j)} in hard difficulty</span>",
-                    unsafe_allow_html=True,
-                )
-            elif count == 2:
-                st.write(
-                    f"🥉<span style='color:#CD7F32 ;'>{i} scored {int(j)} in hard difficulty</span>",
-                    unsafe_allow_html=True,
-                )
-            count += 1
-        return ""
+        combined_lst = combine_lists(top_3_usernames, top_3_points)
+        st.write(
+            f"""
+            <div class = 'hard-dif'>
+                <div>
+                    🥇<span style='color:#FFD700;' id='leaderboards'>
+                    {combined_lst[0][0]} scored {int(combined_lst[0][1])} points in hard difficulty
+                    </span>
+                </div>
+                <div>
+                    🥈<span style='color:#C0C0C0;' id='leaderboards'>
+                    {combined_lst[1][0]} scored {int(combined_lst[1][1])} points in hard difficulty
+                    </span>
+                </div>
+                <div>
+                    🥉<span style='color:#CD7F32;' id='leaderboards'>
+                    {combined_lst[2][0]} scored {int(combined_lst[2][1])} points in hard difficulty
+                    </span>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
     df = pd.read_csv("user_data/data.csv")
     st.markdown('<span id="lb-header"></span>', unsafe_allow_html=True)
     st.write("Leaderboards")
-    if "show_default" not in st.session_state:
-        st.session_state["show_default"] = True
-    st.markdown('<span id="lb-box"></span>', unsafe_allow_html=True)
-    lb_box = st.empty()
-    if st.session_state["show_default"]:
-        lb_box.write("Press a button below to show the corresponding leaderboards")
-        st.session_state["show_default"] = False
-    st.markdown('<span id="easy-btn"></span>', unsafe_allow_html=True)
-    btn_easy = st.button("Easy")
-    st.markdown('<span id="medium-btn"></span>', unsafe_allow_html=True)
-    btn_medium = st.button("Medium")
-    st.markdown('<span id="hard-btn"></span>', unsafe_allow_html=True)
-    btn_hard = st.button("Hard")
-    if btn_easy:
-        content = easy()
-        print(content)
-        lb_box.text(content)
+    if "position" not in st.session_state:
+        st.session_state["position"] = 0
+    st.markdown('<span id="initial-text"></span>', unsafe_allow_html=True)
+    easy()
+    st.markdown("<span id='next-btn'></span>", unsafe_allow_html=True)
+    btn = st.button("Next")
+    if btn:
+        st.markdown(
+            """
+        <style>
+            .element-container:has(#initial-text) + div {
+                display: none;
+            }
+            .element-container:has(#next-btn) + div button {
+                position: fixed;
+                transform: translate(20rem , 7rem);
+            }
+            .element-container:has(#next-btn) + div button:hover {
+                border-color: #7F00FF;
+                color: #7F00FF;
+            }
+            .element-container:has(#next-btn) + div button:active {
+                background-color: #7F00FF;
+                color: white;
+            }
+        </style>
+        """,
+            unsafe_allow_html=True,
+        )
+        st.session_state["position"] += 1
+        if st.session_state["position"] > 2:
+            st.session_state["position"] = 0
 
-    if btn_medium:
-        lb_box.write(medium())
-
-    if btn_hard:
-        lb_box.write(hard())
+        if st.session_state["position"] == 0:
+            easy()
+        elif st.session_state["position"] == 1:
+            medium()
+        elif st.session_state["position"] == 2:
+            hard()
 
 
 # if "user" not in st.session_state:

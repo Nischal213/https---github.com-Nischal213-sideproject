@@ -285,14 +285,6 @@ body {
     text-align: center;
 }
 
-.element-container:has(#leaderboards) {
-    display: none;
-}
-
-.element-container:has(#leaderboards)+div p {
-    text-align: center;
-    font-size: 1.5rem;
-}
 
 .element-container:has(#lb-header) {
     display: none;
@@ -301,7 +293,7 @@ body {
 .element-container:has(#lb-header)+div p {
     text-align: center;
     font-size: 3rem;
-    color: #007bff;
+    color: #7F00FF;
     text-decoration: underline;
     text-underline-position: under;
     margin-bottom: 2rem;
@@ -316,11 +308,50 @@ body {
     font-size: 1.5rem;
 }
 
-.element-container:has(#easy-btn) {
+.easy-dif {
+    font-size: 1.3rem;
+    text-align: center;
+    transform: translate(0.1rem , -2.5rem);
+}
+
+.medium-dif {
+    font-size: 1.3rem;
+    text-align: center;
+    transform: translate(0.1rem , -2.5rem);
+}
+
+.hard-dif {
+    font-size: 1.3rem;
+    text-align: center;
+    transform: translate(0.1rem , -2.5rem);
+}
+
+.element-container:has(#initial-text) {
     display: none;
 }
 
-.element-container:has(#easy-btn)+div button {
-    border: 1px #007bff solid;
-    transform: translate(10rem, 20rem);
+.element-container:has(#initial-text) + div {
+    font-size: 1.3rem;
+    text-align: center;
+    transform: translate(-0.1rem , 2.5rem);
+}
+
+.element-container:has(#next-btn) {
+    display: none;
+}
+
+.element-container:has(#next-btn) + div button {
+    color: white;
+    border-color: gray;
+    transform: translate(20rem , 1rem);
+}
+
+.element-container:has(#next-btn) + div button:hover {
+    border-color: #7F00FF;
+    color: #7F00FF;
+}
+
+.element-container:has(#next-btn) + div button:active {
+    background-color: #7F00FF;
+    color: white;
 }
