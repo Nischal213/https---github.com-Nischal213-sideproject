@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 def home_page():
@@ -150,7 +151,7 @@ def leaderboards():
                 display: none;
             }
             .element-container:has(#next-btn) + div button {
-                position: fixed;
+                position: absolute;
                 z-index: 9999999999;
                 transform: translate(20rem , 7rem);
             }
@@ -183,11 +184,11 @@ def leaderboards():
     user_easy_pts = df.loc[df["Username"] == st.session_state["user"], "Easy_points"]
     user_medi_pts = df.loc[df["Username"] == st.session_state["user"], "Medium_points"]
     user_hard_pts = df.loc[df["Username"] == st.session_state["user"], "Hard_points"]
-    """
-    Make sure to create a csv for each user and store their points
-    and for their personal record show the last 10 scores they got
-    and plot it on a graph
-    """
+    # """
+    # Make sure to create a csv for each user and store their points
+    # and for their personal record show the last 10 scores they got
+    # and plot it on a graph
+    # """
     for i in user_easy_pts:
         st.markdown('<span id="user-pr-easy"></span>', unsafe_allow_html=True)
         if int(i) == 0:
@@ -206,10 +207,29 @@ def leaderboards():
             st.write("No personal best record for hard difficulty")
         else:
             st.write(f"High score in hard difficulty is {int(i)}")
+    df = pd.read_csv(f"user_data/{st.session_state['user']}.csv")
+    points = [i for i in df["Points"]]
+    if len(points) >= 10:
+        points = points[len(points) - 10 : len(points)]
+        date = [i for i in df["Date"]]
+        date = date[len(date) - 10 : len(date)]
+        plt.style.use(["dark_background"])
+        font = {"family": "Comic Sans MS", "size": 7}
+        plt.rc("font", **font)
+        fig, ax = plt.subplots()
+        ax.plot(date, points)
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Points")
+        ax.set_title("Previous 10 scores")
+        st.markdown('<span id="user-graph"></span>', unsafe_allow_html=True)
+        st.pyplot(fig)
+    else:
+        st.markdown('<span id="user-graph-info"></span>', unsafe_allow_html=True)
+        st.info(f"You must play {10 - len(points)} more games to view a graph")
 
 
 if "user" not in st.session_state:
-    st.session_state["user"] = "JohnDoe"
+    switch_page("error page")
 
 st.set_page_config(page_title="Math Maestro | Game Page")
 

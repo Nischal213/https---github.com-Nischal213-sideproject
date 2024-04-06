@@ -8,16 +8,6 @@ st.set_page_config(page_title="Math Maestro | Game Over")
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# adding bootstrap styling for top navbar
-st.markdown(
-    ' <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">',
-    unsafe_allow_html=True,
-)
-
-# top navbar
-with open("pages/top-nav.html") as f:
-    st.markdown(f"{f.read()}", unsafe_allow_html=True)
-
 df = pd.read_csv("user_data/data.csv")
 
 if "user" not in st.session_state:
@@ -64,3 +54,7 @@ st.write(
     </div>""",
     unsafe_allow_html=True,
 )
+st.markdown("<span id='retry-btn'></span>", unsafe_allow_html=True)
+retry = st.button("Retry")
+if retry:
+    switch_page("home")

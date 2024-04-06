@@ -142,6 +142,8 @@ if submit_button:
         with open("user_data/data.csv", "a") as f:
             f.write(f"{username},{secure_password},{email},0,0,0")
             f.write("\n")
+        with open(f"user_data/{username}.csv", "w") as f:
+            f.write(f"Points,Date")
         switch_page("login page")
     else:
         st.warning("Not all the fields are valid")

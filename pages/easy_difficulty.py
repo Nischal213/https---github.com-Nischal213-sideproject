@@ -3,6 +3,7 @@ import random
 from streamlit_extras.switch_page_button import switch_page
 import time
 import pandas as pd
+import datetime
 
 
 # function to check if a variable is a type of the parameter
@@ -139,6 +140,12 @@ if button:
                         df["Username"] == st.session_state["user"], "Easy_points"
                     ] = st.session_state["points"]
                     df.to_csv("user_data/data.csv", index=False)
+
+                with open(f"user_data/{st.session_state['user']}.csv", "a") as f:
+                    current_time = datetime.datetime.now()
+                    format_time = current_time.strftime("%d/%m/%y")
+                    f.write("\n")
+                    f.write(f"{st.session_state['points']},{format_time}")
                 st.session_state["stored_points"] = st.session_state["points"]
                 for key in keys:
                     # deletes all the added session keys

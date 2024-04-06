@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import time
 from streamlit_extras.switch_page_button import switch_page
+import datetime
 
 
 # function to check if a variable is a type of the parameter
@@ -217,6 +218,11 @@ if button:
                     ] = st.session_state["points"]
                     df.to_csv("user_data/data.csv", index=False)
                 st.session_state["stored_points"] = st.session_state["points"]
+                with open(f"user_data/{st.session_state['user']}.csv", "a") as f:
+                    current_time = datetime.datetime.now()
+                    format_time = current_time.strftime("%d/%m/%y")
+                    f.write("\n")
+                    f.write(f"{st.session_state['points']},{format_time}")
                 for key in keys:
                     # deletes all the added session keys
                     del st.session_state[key]

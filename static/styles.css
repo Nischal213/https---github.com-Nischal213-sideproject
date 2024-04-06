@@ -275,7 +275,6 @@ body {
     max-width: 25rem;
     margin-right: 20rem;
     margin-top: 4rem;
-    ;
 }
 
 #game-stats {
@@ -361,7 +360,7 @@ body {
     text-align: center;
     text-decoration: underline;
     text-underline-position: under;
-    color: teal;
+    color: #7F00FF;
 }
 
 .element-container:has(#user-pr-hard) {
@@ -371,6 +370,7 @@ body {
 .element-container:has(#user-pr-hard) + div p{
     text-align: center;
     font-size: 2rem;
+    color: red;
 }
 
 .element-container:has(#user-pr-easy) {
@@ -380,6 +380,7 @@ body {
 .element-container:has(#user-pr-easy) + div p{
     text-align: center;
     font-size: 2rem;
+    color: #32de84;
 }
 
 .element-container:has(#user-pr-medi) {
@@ -389,4 +390,44 @@ body {
 .element-container:has(#user-pr-medi) + div p{
     text-align: center;
     font-size: 2rem;
+    color: orange;
+}
+
+.element-container:has(#user-graph) {
+    display: none;
+}
+
+.element-container:has(#user-graph) + div img {
+    display: block;
+    height: 30rem;
+    margin-top: 4rem;
+}
+
+.element-container:has(#user-graph-info) {
+    display: none;
+}
+
+.element-container:has(#user-graph-info) + div p{
+    margin-left: 10rem;
+    font-size: 1.2rem;
+}
+
+.element-container:has(#retry-btn) {
+    display: none;
+}
+
+.element-container:has(#retry-btn) + div button {
+    color: red;
+    border-color: gray;
+    transform: translate(20rem , 1rem);
+}
+
+.element-container:has(#retry-btn) + div button:hover {
+    border-color: red;
+    color: red;
+}
+
+.element-container:has(#retry-btn) + div button:active {
+    background-color: red;
+    color: white;
 }
