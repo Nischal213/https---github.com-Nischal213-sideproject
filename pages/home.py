@@ -151,6 +151,7 @@ def leaderboards():
             }
             .element-container:has(#next-btn) + div button {
                 position: fixed;
+                z-index: 9999999999;
                 transform: translate(20rem , 7rem);
             }
             .element-container:has(#next-btn) + div button:hover {
@@ -175,10 +176,40 @@ def leaderboards():
             medium()
         elif st.session_state["position"] == 2:
             hard()
+    st.markdown(
+        "<div id ='personal-record-header'><h1>Personal Record</h1></div>",
+        unsafe_allow_html=True,
+    )
+    user_easy_pts = df.loc[df["Username"] == st.session_state["user"], "Easy_points"]
+    user_medi_pts = df.loc[df["Username"] == st.session_state["user"], "Medium_points"]
+    user_hard_pts = df.loc[df["Username"] == st.session_state["user"], "Hard_points"]
+    """
+    Make sure to create a csv for each user and store their points
+    and for their personal record show the last 10 scores they got
+    and plot it on a graph
+    """
+    for i in user_easy_pts:
+        st.markdown('<span id="user-pr-easy"></span>', unsafe_allow_html=True)
+        if int(i) == 0:
+            st.write("No personal best record for easy difficulty")
+        else:
+            st.write(f"High score in easy difficulty is {int(i)}")
+    for i in user_medi_pts:
+        st.markdown('<span id="user-pr-medi"></span>', unsafe_allow_html=True)
+        if int(i) == 0:
+            st.write("No personal best record for medium difficulty")
+        else:
+            st.write(f"High score in medium difficulty is {int(i)}")
+    for i in user_hard_pts:
+        st.markdown('<span id="user-pr-hard"></span>', unsafe_allow_html=True)
+        if int(i) == 0:
+            st.write("No personal best record for hard difficulty")
+        else:
+            st.write(f"High score in hard difficulty is {int(i)}")
 
 
-# if "user" not in st.session_state:
-#     switch_page("error page")
+if "user" not in st.session_state:
+    st.session_state["user"] = "JohnDoe"
 
 st.set_page_config(page_title="Math Maestro | Game Page")
 
@@ -187,7 +218,7 @@ st.set_page_config(page_title="Math Maestro | Game Page")
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-pages = ["Home", "Leaderboards"]
+pages = ["Home", "Leaderboards & Personal Record"]
 
 tabs = st.tabs(pages)
 

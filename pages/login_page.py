@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
+from SecurePassword import SecurePassword
 
 st.set_page_config(page_title="Math Maestro | Login Page")
 
@@ -21,7 +22,9 @@ def does_username_exist(username):
 def is_password_correct(password, username):
     try:
         get_password = df.loc[df["Username"] == f"{username}", "Password"]
-        if password == get_password.values[0]:
+        instance = SecurePassword(password)
+        hex_password = instance.secure()
+        if hex_password == get_password.values[0]:
             return True
     except (KeyError, IndexError):
         return False

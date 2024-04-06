@@ -355,3 +355,38 @@ body {
     background-color: #7F00FF;
     color: white;
 }
+
+#personal-record-header h1{
+    margin-top: 2rem;
+    text-align: center;
+    text-decoration: underline;
+    text-underline-position: under;
+    color: teal;
+}
+
+.element-container:has(#user-pr-hard) {
+    display: none;
+}
+
+.element-container:has(#user-pr-hard) + div p{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.element-container:has(#user-pr-easy) {
+    display: none;
+}
+
+.element-container:has(#user-pr-easy) + div p{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.element-container:has(#user-pr-medi) {
+    display: none;
+}
+
+.element-container:has(#user-pr-medi) + div p{
+    text-align: center;
+    font-size: 2rem;
+}

@@ -133,6 +133,10 @@ func_dict = {
     "logs": logarithmics(),
     "powers": powers(),
 }
+
+"""Make a list so that it ensures all of the questions are asked at least once
+Instead of having to repeatedly answer a question multiple times"""
+
 if "question" not in st.session_state:
     random_key = random.choice(list(func_dict.keys()))
     equation, answer = func_dict.get(random_key)

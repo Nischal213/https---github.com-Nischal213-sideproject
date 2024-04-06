@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
+from SecurePassword import SecurePassword
 
 st.set_page_config(page_title="Math Maestro | Register Page")
 
@@ -134,10 +135,12 @@ st.markdown(
 )
 if submit_button:
     if user_result == True and email_result == True and pass_result == True:
+        instance = SecurePassword(password)
+        secure_password = instance.secure()
         if "user" not in st.session_state:
             st.session_state["user"] = username
         with open("user_data/data.csv", "a") as f:
-            f.write(f"{username},{password},{email},0,0,0")
+            f.write(f"{username},{secure_password},{email},0,0,0")
             f.write("\n")
         switch_page("login page")
     else:
