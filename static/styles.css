@@ -3,22 +3,22 @@ body {
     padding: 0;
 }
 
-/* hiding side navbar */
+
 .st-emotion-cache-1cypcdb.eczjsme11 {
     display: none;
 }
 
-/* hiding full screen option when image is hovered */
+
 .st-emotion-cache-e370rw.e1vs0wn31 {
     display: none;
 }
 
-/* hiding a pop up next to header when hovered */
+
 .st-emotion-cache-15zrgzn.e1nzilvr3 {
     display: none;
 }
 
-/* link text */
+
 #has_account {
     display: flex;
     justify-content: center;
@@ -30,7 +30,7 @@ body {
 }
 
 
-/* button */
+
 .st-emotion-cache-nbt3vv.ef3psqc13 {
     display: block;
     margin: 1rem auto;
@@ -38,25 +38,25 @@ body {
     border-color: #bc13fe;
 }
 
-/* button text */
+
 .st-emotion-cache-nbt3vv.ef3psqc13 p {
     font-family: 'Comic Sans MS';
     font-size: 1.2rem;
 }
 
-/* button hover effect */
+
 .st-emotion-cache-nbt3vv.ef3psqc13:hover {
     background-color: black;
     border-color: #bc13fe;
     color: #bc13fe;
 }
 
-/* input text names */
+
 .st-emotion-cache-sh2krr.e1nzilvr5 p {
     font-size: 1.1rem;
 }
 
-/* images */
+
 .st-emotion-cache-1v0mbdj.e115fcil1 {
     margin: 0 auto;
 }

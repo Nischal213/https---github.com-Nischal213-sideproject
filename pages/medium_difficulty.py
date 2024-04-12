@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 import time
-from streamlit_extras.switch_page_button import switch_page
 import random
-from EquationSolver import EquationSolver
 import datetime
+from streamlit_extras.switch_page_button import switch_page
+from EquationSolver import EquationSolver
 
 
 # function to check if a variable is a type of the parameter
@@ -128,7 +128,6 @@ if button:
         if round(float(user_ans), 1) == round(float(st.session_state["ans"]), 1):
             st.session_state["asked_questions"] += 1
             st.session_state["points"] += 1
-            # Before and after variables contain inline styling so its a bit long
             before_msg = f"""
             <div id = 'info'>
                 <h3 style='color:green;'>+1</h3>
@@ -163,6 +162,8 @@ if button:
                     ] = st.session_state["points"]
                     df.to_csv("user_data/data.csv", index=False)
                 st.session_state["stored_points"] = st.session_state["points"]
+                # Adds the point to their personal record along with current
+                # date and time
                 with open(f"user_data/{st.session_state['user']}.csv", "a") as f:
                     current_time = datetime.datetime.now()
                     format_time = current_time.strftime("%d/%m/%y")

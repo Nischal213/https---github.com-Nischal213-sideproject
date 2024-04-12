@@ -1,4 +1,4 @@
-class BinaryHandler:
+class BinaryOperations:
 
     def __init__(self, binary) -> None:
         self.binary = binary
@@ -13,15 +13,11 @@ class BinaryHandler:
         return denary
 
     def rotate_right(self, amount):
-        # Resource:
-        # https://www.youtube.com/watch?v=m_08FbT0_WY
         right_most_bin = self.binary[-amount:]
         rotated_bin = right_most_bin + self.binary[:-amount]
         return rotated_bin
 
     def right_shift(self, amount):
-        # Resource:
-        # https://byjus.com/gate/right-shift-operator-in-c/
         significant_bin = self.binary[:-amount]
         shifted_bin = "0" * amount + significant_bin
         return shifted_bin
@@ -65,80 +61,83 @@ class BinaryHandler:
 # above that to reduce complexity
 class SecurePassword:
 
+    # A table of 64 constants each representing
+    # the first 32 bits of the cube roots
+    # of the first 64 primes
     K = [
         "01000010100010100010111110011000",
         "01110001001101110100010010010001",
-        "10110101110000111111101111001111",
+        "10110101110000001111101111001111",
         "11101001101101011101101110100101",
         "00111001010101101100001001011011",
         "01011001111100010001000111110001",
-        "10010010001111100101001010100100",
+        "10010010001111111000001010100100",
         "10101011000111000101111011010101",
         "11011000000001111010101010011000",
-        "00010010100000110101100100000001",
-        "00100100001100011000011010111110",
+        "00010010100000110101101100000001",
+        "00100100001100011000010110111110",
         "01010101000011000111110111000011",
-        "01110010101111100101110111010011",
-        "10000000110111101110001001111110",
-        "10011101101111000011010101000111",
-        "11000001100110111011111000101110",
-        "11100100100110110100110010000001",
-        "11101111101111100010001100000110",
-        "00001111110000011001111011000110",
-        "00100100000011001010000110001100",
-        "00101101111010000010100111011100",
-        "01110110111110010001111110110100",
-        "10011000001111100101010100001010",
-        "10100011110000110011011001010101",
-        "10110000000000100110011111001000",
-        "10111110101110011111111111000111",
-        "11001011111000000011000011110011",
-        "11010110100101111001011001010111",
-        "00000110110010110011001101010001",
-        "00100010100100101001001101100111",
-        "00101111011011101000101110001100",
-        "01001010101001001101001001100111",
-        "01011101110000010100101001101000",
-        "01110011011101000000010110110111",
-        "10000001110010000001011000101110",
-        "10010011101000110100011100100010",
-        "10100011000010110110010000101110",
-        "10101101100010100000110100000101",
-        "10110000001011011110010010110111",
-        "10111110010110010001001110100011",
-        "11001111001000000101111101110000",
-        "11010101111111000100100000011000",
-        "11011000101010100000001100110010",
-        "11100001001010110000101000111001",
-        "11100110100110111110001100100000",
-        "11101101100110000110011000100100",
-        "11110000011101001000001100000101",
-        "00010000011010100010101100010000",
-        "00011001001011010110001100001000",
-        "00011110001101111011000000100000",
-        "00100011110110101101101010001011",
-        "00101010010001111111010010001100",
-        "00110000111001100000001011011011",
-        "00110110001011110101101010001111",
-        "00111001011101101010001101111110",
-        "01000001100110001000010100000010",
-        "01000101111110010000001111111010",
-        "01001001110100010011110000111111",
-        "01001110110011000001001110111110",
-        "01010001111110100000110010110000",
-        "01010101000001010011000000101100",
-        "01011011110110100000110101101111",
-        "01100100100010100001101001010110",
-        "01101000001111000001000000111000",
+        "01110010101111100101110101110100",
+        "10000000110111101011000111111110",
+        "10011011110111000000011010100111",
+        "11000001100110111111000101110100",
+        "11100100100110110110100111000001",
+        "11101111101111100100011110000110",
+        "00001111110000011001110111000110",
+        "00100100000011001010000111001100",
+        "00101101111010010010110001101111",
+        "01001010011101001000010010101010",
+        "01011100101100001010100111011100",
+        "01110110111110011000100011011010",
+        "10011000001111100101000101010010",
+        "10101000001100011100011001101101",
+        "10110000000000110010011111001000",
+        "10111111010110010111111111000111",
+        "11000110111000000000101111110011",
+        "11010101101001111001000101000111",
+        "00000110110010100110001101010001",
+        "00010100001010010010100101100111",
+        "00100111101101110000101010000101",
+        "00101110000110110010000100111000",
+        "01001101001011000110110111111100",
+        "01010011001110000000110100010011",
+        "01100101000010100111001101010100",
+        "01110110011010100000101010111011",
+        "10000001110000101100100100101110",
+        "10010010011100100010110010000101",
+        "10100010101111111110100010100001",
+        "10101000000110100110011001001011",
+        "11000010010010111000101101110000",
+        "11000111011011000101000110100011",
+        "11010001100100101110100000011001",
+        "11010110100110010000011000100100",
+        "11110100000011100011010110000101",
+        "00010000011010101010000001110000",
+        "00011001101001001100000100010110",
+        "00011110001101110110110000001000",
+        "00100111010010000111011101001100",
+        "00110100101100001011110010110101",
+        "00111001000111000000110010110011",
+        "01001110110110001010101001001010",
+        "01011011100111001100101001001111",
+        "01101000001011100110111111110011",
+        "01110100100011111000001011101110",
+        "01111000101001010110001101101111",
+        "10000100110010000111100000010100",
+        "10001100110001110000001000001000",
+        "10010000101111101111111111111010",
+        "10100100010100000110110011101011",
+        "10111110111110011010001111110111",
+        "11000110011100010111100011110010",
     ]
 
     def __init__(self, password) -> None:
         self.password = password
 
+    # staticmethod decorators are used because they rely solely
+    # on the argument given to them and are independant of the class
     @staticmethod
     def den_to_bin(denary):
-        # Resource:
-        # https://www.bbc.co.uk/bitesize/guides/zd88jty/revision/3
         binary = ""
         if denary == 0:
             return "0"
@@ -165,7 +164,7 @@ class SecurePassword:
     # Lowercase sigma is σ
     @staticmethod
     def sigma_zero(binary):
-        instance = BinaryHandler(binary)
+        instance = BinaryOperations(binary)
         rotate_seven = instance.rotate_right(7)
         rotate_eighteen = instance.rotate_right(18)
         right_three = instance.right_shift(3)
@@ -174,7 +173,7 @@ class SecurePassword:
 
     @staticmethod
     def sigma_one(binary):
-        instance = BinaryHandler(binary)
+        instance = BinaryOperations(binary)
         rotate_seventeen = instance.rotate_right(17)
         rotate_nineteen = instance.rotate_right(19)
         right_ten = instance.right_shift(10)
@@ -184,7 +183,7 @@ class SecurePassword:
     # Upper case sigma is Σ
     @staticmethod
     def capital_sigma_zero(binary):
-        instance = BinaryHandler(binary)
+        instance = BinaryOperations(binary)
         rotate_two = instance.rotate_right(2)
         rotate_thirteen = instance.rotate_right(13)
         rotate_twenty_two = instance.rotate_right(22)
@@ -193,7 +192,7 @@ class SecurePassword:
 
     @staticmethod
     def capital_sigma_one(binary):
-        instance = BinaryHandler(binary)
+        instance = BinaryOperations(binary)
         rotate_six = instance.rotate_right(6)
         rotate_eleven = instance.rotate_right(11)
         rotate_twenty_five = instance.rotate_right(25)
@@ -251,9 +250,8 @@ class SecurePassword:
         return binary[::-1]
 
     # Defined as Wt
-    @staticmethod
-    def make_msg_schedule(binary):
-        instance = BinaryHandler(binary)
+    def make_msg_schedule(self, binary):
+        instance = BinaryOperations(binary)
         # From Wt = 0 to Wt = 15, no changes are needed
         message_schedule = instance.split_binary(32)
         # Message schedule must be from Wt = 0 to Wt = 63
@@ -270,7 +268,7 @@ class SecurePassword:
                 + SecurePassword.sigma_zero(word_t_minus_fifteen)
                 + word_t_minus_sixteen
             )
-            instance = BinaryHandler(formula)
+            instance = BinaryOperations(formula)
             # After this modulo 2^32 is needed for 32-bit length
             mod_formula = SecurePassword.den_to_bin(instance.bin_to_den() % (2**32))
             # Adding some front 0 padding to ensure it is 32 bit long
@@ -278,8 +276,7 @@ class SecurePassword:
             message_schedule.append(pad_formula)
         return message_schedule
 
-    @staticmethod
-    def compute_msg_schedule(msg_schedule):
+    def compute_msg_schedule(self, msg_schedule):
         initial_hash_values = [
             "01101010000010011110011001100111",
             "10111011011001111010111010000101",
@@ -358,5 +355,5 @@ class SecurePassword:
         sha_binary += (64 - len(initial_bin)) * "0" + initial_bin
         message_schedule = self.make_msg_schedule(sha_binary)
         password_hashed = self.compute_msg_schedule(message_schedule)
-        instance = BinaryHandler(password_hashed)
+        instance = BinaryOperations(password_hashed)
         return instance.bin_to_hexadecimal()

@@ -1,7 +1,7 @@
 import streamlit as st
-from streamlit_extras.switch_page_button import switch_page
 import pandas as pd
 import matplotlib.pyplot as plt
+from streamlit_extras.switch_page_button import switch_page
 
 
 def home_page():
@@ -38,6 +38,7 @@ def home_page():
 
 def leaderboards():
 
+    # Only works if both arrays are the same length
     def combine_lists(arr1, arr2):
         new_list = []
         for i in range(len(arr1)):
@@ -140,6 +141,7 @@ def leaderboards():
     if "position" not in st.session_state:
         st.session_state["position"] = 0
     st.markdown('<span id="initial-text"></span>', unsafe_allow_html=True)
+    # Initially showing easy leaderboards
     easy()
     st.markdown("<span id='next-btn'></span>", unsafe_allow_html=True)
     btn = st.button("Next")
@@ -184,11 +186,6 @@ def leaderboards():
     user_easy_pts = df.loc[df["Username"] == st.session_state["user"], "Easy_points"]
     user_medi_pts = df.loc[df["Username"] == st.session_state["user"], "Medium_points"]
     user_hard_pts = df.loc[df["Username"] == st.session_state["user"], "Hard_points"]
-    # """
-    # Make sure to create a csv for each user and store their points
-    # and for their personal record show the last 10 scores they got
-    # and plot it on a graph
-    # """
     for i in user_easy_pts:
         st.markdown('<span id="user-pr-easy"></span>', unsafe_allow_html=True)
         if int(i) == 0:

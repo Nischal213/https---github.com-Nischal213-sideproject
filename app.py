@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 from SecurePassword import SecurePassword
+from email_validator import validate_email, EmailNotValidError
 
 st.set_page_config(page_title="Math Maestro | Register Page")
 
@@ -15,6 +16,8 @@ df = pd.read_csv("user_data/data.csv")
 def is_username_valid(username):
 
     def has_invalid_chars(word):
+        # Only accepts one special character "_"
+        # All the other special characters are rejected
         return not (all((i == "_" or i.isalnum() for i in word)))
 
     def is_username_unique(username):
@@ -49,11 +52,10 @@ def is_username_valid(username):
         return ("", error_msg)
 
 
-def has_special_chars(word):
-    return not (all(i.isalnum() for i in word))
-
-
 def is_password_valid(password):
+
+    def has_special_chars(word):
+        return not (all(i.isalnum() for i in word))
 
     def has_upper_chars(word):
         return any(i.isupper() for i in word)
@@ -84,16 +86,10 @@ def is_password_valid(password):
 def is_email_valid(email):
 
     def does_email_exist(email):
-        if has_special_chars(email):
-            # Checks if the email string contains at least 1 '.' and only 1 '@'
-            if email.count(".") != 0 and email.count("@") == 1:
-                # Checks if there is anything before the '@' symbol
-                before_at_symbol = len(email[: email.index("@")])
-                # Checks if there is anything after the '@'symbol
-                after_at_symbol = len(email[email.index("@") + 1 :])
-                if before_at_symbol > 0 and after_at_symbol > 0:
-                    return True
-        else:
+        try:
+            verify = validate_email(email)
+            return True
+        except EmailNotValidError:
             return False
 
     def is_email_taken(email):
@@ -120,7 +116,9 @@ username = st.text_input(
 user_result, user_error = is_username_valid(username)
 if user_result == False:
     st.error(f"{user_error}")
-password = st.text_input("Password", type="password", placeholder="Enter your password")
+password = st.text_input(
+    "Password", type="password", placeholder="Enter your password", max_chars=55
+)
 pass_result, pass_error = is_password_valid(password)
 if pass_result == False:
     st.error(f"{pass_error}")
@@ -139,9 +137,13 @@ if submit_button:
         secure_password = instance.secure()
         if "user" not in st.session_state:
             st.session_state["user"] = username
+        # Updating the csv file by adding the details of the
+        # registered user
         with open("user_data/data.csv", "a") as f:
             f.write(f"{username},{secure_password},{email},0,0,0")
             f.write("\n")
+        # Making the user's own csv file which is used to keep
+        # track of their personal score
         with open(f"user_data/{username}.csv", "w") as f:
             f.write(f"Points,Date")
         switch_page("login page")
