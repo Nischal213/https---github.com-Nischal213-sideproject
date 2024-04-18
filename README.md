@@ -22,6 +22,7 @@ FUTURE IDEAS:
     figure = px.line(x=dates, y=scores, labels={"x": "Date", "y": "Score"})
 
     st.plotly_chart(figure)
+-> Do the same thing for pie charts as well
 -> Make a captcha to prevent bots from spam making account
 -> 2FA verification
 -> Change password using email
