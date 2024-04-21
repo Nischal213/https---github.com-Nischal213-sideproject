@@ -1,16 +1,3 @@
-Change bg color in py.subplot() - [Here](https://www.geeksforgeeks.org/how-to-set-plot-background-color-in-matplotlib/)
-
-Change text color in py.subplot() - [Here](https://stackoverflow.com/questions/27898830/python-how-to-change-autopct-text-color-to-be-white-in-a-pie-chart)
-
-SHA-256 explanation - [Here](https://www.youtube.com/watch?v=orIgy2MjqrA)
-
-Rotate right explanation - [Here](https://www.youtube.com/watch?v=m_08FbT0_WY)
-
-Right shift explanation - [Here](https://www.youtube.com/watch?v=m_08FbT0_WY)
-
-Binary to denary easier method - [Here](https://www.bbc.co.uk/bitesize/guides/zd88jty/revision/3)
-
-
 FUTURE IDEAS:
 -> A better way of showing user's personal growth as the graph is interactive
     import streamlit as st
@@ -26,3 +13,4 @@ FUTURE IDEAS:
 -> Make a captcha to prevent bots from spam making account
 -> 2FA verification
 -> Change password using email
+-> Make a requirements.txt file

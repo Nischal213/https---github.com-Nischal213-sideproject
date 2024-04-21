@@ -83,6 +83,7 @@ def powers():
     def natural_log_approximation(number):
         # Reference:
         # https://mathcentral.uregina.ca/QQ/database/QQ.09.02/amanda3.html
+        # Accurate up to 1/2 d.p
 
         for i in range(10):
             number = number**0.5

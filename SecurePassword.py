@@ -12,11 +12,17 @@ class BinaryOperations:
             power -= 1
         return denary
 
+    # Resource:
+    # https://www.youtube.com/watch?v=m_08FbT0_WY
+    # Video shows how to rotate right with no code
     def rotate_right(self, amount):
         right_most_bin = self.binary[-amount:]
         rotated_bin = right_most_bin + self.binary[:-amount]
         return rotated_bin
 
+    # Resource:
+    # https://byjus.com/gate/right-shift-operator-in-c/
+    # Website that teaches right shift with code
     def right_shift(self, amount):
         significant_bin = self.binary[:-amount]
         shifted_bin = "0" * amount + significant_bin
@@ -59,6 +65,9 @@ class BinaryOperations:
 # The class SecurePassword is a simplified version
 # of sha-256 that only handles up to 512 bits not anything
 # above that to reduce complexity
+# Resource:
+# https://www.youtube.com/watch?v=orIgy2MjqrA
+# The video breaks down SHA-256 algorithm with no code
 class SecurePassword:
 
     # A table of 64 constants each representing
@@ -136,6 +145,10 @@ class SecurePassword:
 
     # staticmethod decorators are used because they rely solely
     # on the argument given to them and are independant of the class
+    # # Resource:
+    # https://www.bbc.co.uk/bitesize/guides/zd88jty/revision/3
+    # Website that teaches an easier way to convert
+    # from denary to binary
     @staticmethod
     def den_to_bin(denary):
         binary = ""
@@ -161,7 +174,6 @@ class SecurePassword:
             binary += str(add % 2)
         return binary
 
-    # Lowercase sigma is σ
     @staticmethod
     def sigma_zero(binary):
         instance = BinaryOperations(binary)
@@ -180,7 +192,6 @@ class SecurePassword:
         answer = SecurePassword.xor(rotate_seventeen, rotate_nineteen, right_ten)
         return answer
 
-    # Upper case sigma is Σ
     @staticmethod
     def capital_sigma_zero(binary):
         instance = BinaryOperations(binary)
