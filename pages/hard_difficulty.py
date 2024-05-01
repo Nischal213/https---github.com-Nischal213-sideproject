@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import time
 import datetime
+import math
 from streamlit_extras.switch_page_button import switch_page
 
 
@@ -80,18 +81,8 @@ def powers():
     latex_equation = r"base^x = ans"
     equation = latex_equation.replace("base", f"{base}").replace("ans", f"{result}")
 
-    def natural_log_approximation(number):
-        # Reference:
-        # https://mathcentral.uregina.ca/QQ/database/QQ.09.02/amanda3.html
-        # Accurate up to 1/2 d.p
-
-        for i in range(10):
-            number = number**0.5
-
-        return (number - 1) * 1024
-
-    log_result = natural_log_approximation(result)
-    log_base = natural_log_approximation(base)
+    log_result = math.log(result)
+    log_base = math.log(base)
     answer = log_result / log_base
 
     return equation, round(answer, 1)
