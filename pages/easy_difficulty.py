@@ -40,13 +40,18 @@ def animation(before_animation, after_animation, box_name, duration=1):
 if "user" not in st.session_state:
     switch_page("error page")
 
+if "playing" in st.session_state and not (st.session_state["playing"]):
+    for key in st.session_state.keys():
+        if key != "user":
+            del st.session_state[key]
+
 st.set_page_config(page_title="Math Maestro | Easy Mode")
 
 # custom styling
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-df = pd.read_csv("user_data/data.csv")
+df = pd.read_csv("main_data/data.csv")
 st.markdown(
     """
     <div id = 'sub-header'>
@@ -138,7 +143,7 @@ if button:
                     df.loc[
                         df["Username"] == st.session_state["user"], "Easy_points"
                     ] = st.session_state["points"]
-                    df.to_csv("user_data/data.csv", index=False)
+                    df.to_csv("main_data/data.csv", index=False)
 
                 # Adds the point to their personal record along with current
                 # date and time

@@ -1,4 +1,7 @@
 FUTURE IDEAS:
+-> PRIORITY - When the user goes back a page, session state data is retained
+(Plausible idea: temporarily store their username session state data and 
+clear all the keys when first entering the page) 
 -> A better way of showing user's personal growth as the graph is interactive
     import streamlit as st
     import plotly.express as px
@@ -13,4 +16,3 @@ FUTURE IDEAS:
 -> Make a captcha to prevent bots from spam making account
 -> 2FA verification
 -> Change password using email
--> Make a requirements.txt file

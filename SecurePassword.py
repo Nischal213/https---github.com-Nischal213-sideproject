@@ -368,3 +368,7 @@ class SecurePassword:
         password_hashed = self.compute_msg_schedule(message_schedule)
         instance = BinaryOperations(password_hashed)
         return instance.bin_to_hexadecimal()
+
+
+instance = SecurePassword("Sample123")
+print(instance.secure())

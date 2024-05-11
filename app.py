@@ -10,7 +10,7 @@ st.set_page_config(page_title="Math Maestro | Register Page")
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-df = pd.read_csv("user_data/data.csv")
+df = pd.read_csv("main_data/data.csv")
 
 
 def is_username_valid(username):
@@ -139,7 +139,7 @@ if submit_button:
             st.session_state["user"] = username
         # Updating the csv file by adding the details of the
         # registered user
-        with open("user_data/data.csv", "a") as f:
+        with open("main_data/data.csv", "a") as f:
             f.write(f"{username},{secure_password},{email},0,0,0")
             f.write("\n")
         # Making the user's own csv file which is used to keep

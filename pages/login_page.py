@@ -9,7 +9,7 @@ st.set_page_config(page_title="Math Maestro | Login Page")
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-df = pd.read_csv("user_data/data.csv")
+df = pd.read_csv("main_data/data.csv")
 
 
 def does_username_exist(username):

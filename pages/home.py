@@ -135,7 +135,7 @@ def leaderboards():
             unsafe_allow_html=True,
         )
 
-    df = pd.read_csv("user_data/data.csv")
+    df = pd.read_csv("main_data/data.csv")
     st.markdown('<span id="lb-header"></span>', unsafe_allow_html=True)
     st.write("Leaderboards")
     if "position" not in st.session_state:
@@ -227,6 +227,9 @@ def leaderboards():
 
 if "user" not in st.session_state:
     switch_page("error page")
+
+if "playing" not in st.session_state:
+    st.session_state["playing"] = False
 
 st.set_page_config(page_title="Math Maestro | Game Page")
 

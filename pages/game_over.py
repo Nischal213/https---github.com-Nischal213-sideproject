@@ -8,7 +8,7 @@ st.set_page_config(page_title="Math Maestro | Game Over")
 with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-df = pd.read_csv("user_data/data.csv")
+df = pd.read_csv("main_data/data.csv")
 
 if "user" not in st.session_state:
     switch_page("error page")
