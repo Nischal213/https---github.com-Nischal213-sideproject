@@ -25,6 +25,8 @@ def home_page():
     medium_mode = st.button("Play!", key="medium")
     st.markdown('<span id="hard-button"></span>', unsafe_allow_html=True)
     hard_mode = st.button("Play!", key="hard")
+    st.markdown('<span id="adaptive-button"></span>', unsafe_allow_html=True)
+    adaptive_mode = st.button("Play!", key="adaptive")
 
     if easy_mode:
         switch_page("easy difficulty")
@@ -34,6 +36,9 @@ def home_page():
 
     if hard_mode:
         switch_page("hard difficulty")
+
+    if adaptive_mode:
+        switch_page("adaptive difficulty")
 
 
 def leaderboards():
@@ -227,6 +232,7 @@ def leaderboards():
 
 if "user" not in st.session_state:
     switch_page("error page")
+
 
 if "playing" not in st.session_state:
     st.session_state["playing"] = False

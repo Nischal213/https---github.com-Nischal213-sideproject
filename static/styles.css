@@ -103,13 +103,16 @@ body {
 .difficulty-container {
     display: flex;
     gap: 2rem;
+    width: 60rem;
+    height: 20rem;
+    transform: translate(-7.0rem, 1.0rem);
 }
 
 .difficulty-content {
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
-    width: 33%;
+    width: 200rem;
     padding-bottom: 2rem;
 }
 
@@ -149,6 +152,13 @@ body {
     color: darkred;
 }
 
+#adaptive-content {
+    background: aqua;
+}
+
+#adaptive-content h1 {
+    color: blue;
+}
 .element-container:has(#easy-button) {
     display: none;
 }
@@ -156,7 +166,7 @@ body {
 .element-container:has(#easy-button)+div button {
     background-color: green;
     position: absolute;
-    transform: translate(4.8rem, -2.6rem);
+    transform: translate(-2.5rem, -2.6rem);
 }
 
 .element-container:has(#easy-button)+div button:hover {
@@ -172,7 +182,7 @@ body {
 .element-container:has(#medium-button)+div button {
     background-color: #FF6347;
     position: absolute;
-    transform: translate(20.3rem, -3.6rem);
+    transform: translate(12.7rem, -3.6rem);
 }
 
 .element-container:has(#medium-button)+div button:hover {
@@ -188,13 +198,29 @@ body {
 .element-container:has(#hard-button)+div button {
     background-color: darkred;
     position: absolute;
-    transform: translate(35.5rem, -4.6rem);
+    transform: translate(28.0rem, -4.6rem);
 }
 
 .element-container:has(#hard-button)+div button:hover {
     background-color: black;
     border-color: darkred;
     color: darkred;
+}
+
+.element-container:has(#adaptive-button) {
+    display: none;
+}
+
+.element-container:has(#adaptive-button)+div button {
+    background-color: blue;
+    position: absolute;
+    transform: translate(44.0rem, -5.8rem);
+}
+
+.element-container:has(#adaptive-button)+div button:hover {
+    background-color: black;
+    border-color: aqua;
+    color: aqua;
 }
 
 .element-container:has(#question) {
