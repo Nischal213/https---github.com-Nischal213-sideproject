@@ -31,7 +31,7 @@ def generate_random_question(avg_score, arr=[], diff=None):
 
 
 if "user" not in st.session_state:
-    st.session_state["user"] = "JohnDoe"
+    switch_page("error page")
 
 if "playing" in st.session_state and not (st.session_state["playing"]):
     for key in st.session_state.keys():
@@ -67,7 +67,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 # name of all the keys added in the session
-keys = ["question", "ans", "one_dp", "points", "lives", "array", "difficulty"]
+keys = ["question", "ans", "one_dp", "points", "lives", "array"]
 st.markdown('<span id="question"></span>', unsafe_allow_html=True)
 question_box = st.empty()
 if st.session_state["difficulty"] != "Hard":
@@ -139,6 +139,7 @@ if button:
             st.session_state["asked_questions"] += 1
             st.session_state["lives"] -= 1
             if st.session_state["lives"] == 0:
+                st.session_state["difficulty"] = "Adaptive"
                 # Adds the point to their personal record along with current
                 # date and time
                 with open(f"user_data/{st.session_state['user']}.csv", "a") as f:
