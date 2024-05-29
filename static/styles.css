@@ -306,7 +306,7 @@ body {
 #game-stats {
     position: absolute;
     width: 10rem;
-    transform: translate(30rem, -15rem);
+    transform: translate(35.5rem, -15rem);
     text-align: center;
 }
 

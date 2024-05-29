@@ -10,6 +10,6 @@ st.write(
 )
 
 st.write(
-    "<div id = 'header_error'><h4>Click <a href='http://localhost:8501/' target='_self'> here </a> to be redirected to the main page </h4></div>",
+    "<div id = 'header_error'><h4>Click <a href='http://localhost:8501/login_page' target='_self'> here </a> to be redirected to the main page </h4></div>",
     unsafe_allow_html=True,
 )

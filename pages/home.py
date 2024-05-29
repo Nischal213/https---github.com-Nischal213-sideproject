@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 from streamlit_extras.switch_page_button import switch_page
 
 
@@ -215,16 +215,8 @@ def leaderboards():
         points = points[len(points) - 10 : len(points)]
         date = [i for i in df["Date"]]
         date = date[len(date) - 10 : len(date)]
-        plt.style.use(["dark_background"])
-        font = {"family": "Comic Sans MS", "size": 7}
-        plt.rc("font", **font)
-        fig, ax = plt.subplots()
-        ax.plot(date, points)
-        ax.set_xlabel("Date")
-        ax.set_ylabel("Points")
-        ax.set_title("Previous 10 scores")
-        st.markdown('<span id="user-graph"></span>', unsafe_allow_html=True)
-        st.pyplot(fig)
+        figure = px.line(x=date, y=points, labels={"x": "Date", "y": "Points"})
+        st.plotly_chart(figure)
     else:
         st.markdown('<span id="user-graph-info"></span>', unsafe_allow_html=True)
         st.info(f"You must play {10 - len(points)} more games to view a graph")
@@ -232,7 +224,6 @@ def leaderboards():
 
 if "user" not in st.session_state:
     switch_page("error page")
-
 
 if "playing" not in st.session_state:
     st.session_state["playing"] = False

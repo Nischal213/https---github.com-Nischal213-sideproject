@@ -1,7 +1,6 @@
 # A class that checks all the possible combinations of a question
 # in the form: {rand_op} {num1} {rand_op2} {num2} = {num3}
 # and gets the answer
-# Hello
 class EquationSolver:
 
     def __init__(self, num1, num2, num3, random_op, random_op2, reverse_op2) -> None:
