@@ -1,5 +1,4 @@
 FUTURE IDEAS:
--> Make a captcha to prevent bots from spam making account
 -> 2FA verification
 -> Change password using email
 
