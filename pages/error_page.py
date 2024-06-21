@@ -28,11 +28,10 @@ if "user" not in st.session_state:
 
 if "verification_code" not in st.session_state:
     df = pd.read_csv("main_data/data.csv")
-    # get_email = df.loc[df["Username"] == f"{st.session_state["user"]}", "Email"]
-    # email_receiver = f"{get_email.values[0]}"
     email_sender = "mathsmaestro123@gmail.com"
     email_password = "mnwg homw fgap fika"
-    email_receiver = "n_gurung18@cranford.hounslow.sch.uk"
+    get_email = df.loc[df["Username"] == f"{st.session_state["user"]}", "Email"]
+    email_receiver = f"{get_email.values[0]}"
     random_code = "".join([str(random.randint(0, 9)) for i in range(6)])
 
     subject = "Maths Maestro Verification Code"
@@ -59,7 +58,6 @@ if "verification_code" not in st.session_state:
         smtp.sendmail(email_sender, email_receiver, em.as_string())
         print("Sucesss")
     st.session_state["verification_code"] = random_code
-    print(random_code)
 
 st.header("Verify it's you")
 verify_code = st.text_input(
@@ -71,5 +69,4 @@ if check_button:
     if verify_code == st.session_state["verification_code"]:
         switch_page("home")
     else:
-        st.warning("INCORRECT PIN AHHHHHHHHHHHHHHHHHHHH")
-
+        st.warning("INCORRECT PIN")
