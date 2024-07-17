@@ -46,6 +46,12 @@ if submit_button:
     if user_result == True and pass_result == True:
         if "user" not in st.session_state:
             st.session_state["user"] = username
-        switch_page("home")
+        is_verified = df.loc[
+            df["Username"] == f"{st.session_state['user']}", "Verified"
+        ].values[0]
+        if not (is_verified):
+            switch_page("verify")
+        else:
+            switch_page("home")
     else:
         st.warning("Not all the fields are valid")

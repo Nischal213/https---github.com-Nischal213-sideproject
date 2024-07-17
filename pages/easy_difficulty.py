@@ -15,7 +15,6 @@ def is_type(variable, type):
         return False
 
 
-# function to generate random numbers
 def generate_random_question():
     random_op = random.choice(["+", "-", "*", "/"])
     if random_op in ["/", "*"]:
@@ -40,6 +39,10 @@ def animation(before_animation, after_animation, box_name, duration=1):
 if "user" not in st.session_state:
     switch_page("error page")
 
+
+# This block of code is used to ensure that if the user attempts
+# to go back to the home page whilst in a game, it will handle
+# things accordingly
 if "playing" in st.session_state and not (st.session_state["playing"]):
     for key in st.session_state.keys():
         if key != "user":

@@ -144,11 +144,18 @@ class AdaptiveQuestions:
             "Medium": self.medium_difficulty(),
             "Hard": self.hard_difficulty(),
         }
+        # Gets a random question and answer for the difficulty
+        # the user is currently on
         if self.diff:
             question, answer, one_dp = func_dict.get(self.diff)
             return question, answer, one_dp, None
+
         initial, difficulty = False, False
-        # Sets initial difficulty
+
+        # self.avg_points will be used as initial difficulty
+        # if the value becomes -1, it means that the difficulty
+        # will not rely on avg_points anymore but instead the user's
+        # progress in the game so far
         if self.avg_points != -1:
             if self.avg_points > 10:
                 initial = "Hard"
@@ -158,12 +165,17 @@ class AdaptiveQuestions:
                 initial = "Easy"
             self.avg_points = -1
         else:
+            # This block of code only runs when the user has
+            # answered 5 questions , then it determines which
+            # difficulty it should change to based on the
+            # user's performance
             if sum(self.arr) == 5:
                 difficulty = "Hard"
             elif sum(self.arr) > 3:
                 difficulty = "Medium"
             else:
                 difficulty = "Easy"
+
         if initial:
             question, answer, one_dp = func_dict.get(initial)
             return question, answer, one_dp, initial

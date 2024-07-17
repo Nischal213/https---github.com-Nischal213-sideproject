@@ -23,8 +23,10 @@ def animation(before_animation, after_animation, box_name, duration=1):
     box_name.write(f"{after_animation}", unsafe_allow_html=True)
 
 
-# function to generate random questions
 def generate_random_question(avg_score, arr=[], diff=None):
+    # Initially, the diff is None because the class creates
+    # the initial difficulty by taking the average of the
+    # user's past scores
     instance = AdaptiveQuestions(avg_score, arr, diff)
     question, answer, one_dp, diff = instance.generate_initial_question()
     return question, answer, one_dp, diff
@@ -33,6 +35,9 @@ def generate_random_question(avg_score, arr=[], diff=None):
 if "user" not in st.session_state:
     switch_page("error page")
 
+# This block of code is used to ensure that if the user attempts
+# to go back to the home page whilst in a game, it will handle
+# things accordingly
 if "playing" in st.session_state and not (st.session_state["playing"]):
     for key in st.session_state.keys():
         if key != "user":
@@ -40,7 +45,10 @@ if "playing" in st.session_state and not (st.session_state["playing"]):
 
 if "question" not in st.session_state:
     df = pd.read_csv(f"user_data/{st.session_state['user']}.csv")
-    avg_score = sum(df["Points"]) / len(df["Points"])
+    try:
+        avg_score = sum(df["Points"]) / len(df["Points"])
+    except ZeroDivisionError:
+        avg_score = 0
     question, answer, one_dp, diff = generate_random_question(avg_score)
     st.session_state["question"], st.session_state["ans"] = question, answer
     st.session_state["one_dp"], st.session_state["stored_points"] = one_dp, 0

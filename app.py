@@ -140,7 +140,7 @@ if submit_button:
         # Updating the csv file by adding the details of the
         # registered user
         with open("main_data/data.csv", "a") as f:
-            f.write(f"{username},{secure_password},{email},0,0,0")
+            f.write(f"{username},{secure_password},{email},0,0,0,False")
             f.write("\n")
         # Making the user's own csv file which is used to keep
         # track of their personal score

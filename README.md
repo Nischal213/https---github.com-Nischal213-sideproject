@@ -1,7 +1,6 @@
 FUTURE IDEAS:
--> 2FA verification
+-> Considering to split "Leaderboards and Personal Record" into two different sections
 -> Change password using email
-
 How to play my game:
 
 First download all the required packages:
