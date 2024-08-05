@@ -14,16 +14,22 @@ body {
 }
 
 
-#has_account {
+.account-container {
     display: flex;
     justify-content: center;
     margin-top: 0;
+    margin-bottom: 1rem;
 }
 
-#has_account p {
+
+.account-container a,p{
     font-size: 1.2rem;
 }
 
+
+#forgot-account {
+    margin-left: auto;
+}
 
 
 .st-emotion-cache-nbt3vv.ef3psqc13 {

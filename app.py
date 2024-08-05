@@ -128,7 +128,7 @@ if email_result == False:
     st.error(f"{email_error}")
 submit_button = st.button("Sign Up", type="primary")
 st.markdown(
-    "<div id = 'has_account'><p> Already have an account? click <a href='/login_page' target='_self'>Here</a></p></div>",
+    "<div class = 'account-container'><p> Already have an account? click <a href='/login_page' target='_self'>Here</a></p></div>",
     unsafe_allow_html=True,
 )
 if submit_button:

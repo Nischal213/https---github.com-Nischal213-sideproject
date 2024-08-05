@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 
+st.set_page_config(page_title="Math Maestro | Get Username Page")
+
+# custom styling
+with open("static/styles.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 if "user" in st.session_state:
     switch_page("error page")
 

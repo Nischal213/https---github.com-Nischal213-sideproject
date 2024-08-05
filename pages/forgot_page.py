@@ -8,12 +8,22 @@ from email.message import EmailMessage
 from streamlit_extras.switch_page_button import switch_page
 
 
+st.set_page_config(page_title="Math Maestro | Forgot Page")
+
+# custom styling
+with open("static/styles.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
 if "temp_user" not in st.session_state:
     switch_page("error page")
 
 df = pd.read_csv("main_data/data.csv")
 
 if "verification_code" not in st.session_state:
+    # This entire block of code makes an email
+    # along with a random 6-digit PIN sent
+    # to the user's registered email address
     email_sender = "mathsmaestro123@gmail.com"
     email_password = "mnwg homw fgap fika"
     get_email = df.loc[df["Username"] == f"{st.session_state['temp_user']}", "Email"]
@@ -95,6 +105,7 @@ if submit:
         st.session_state["user"] = st.session_state["temp_user"]
         del st.session_state["temp_user"]
         instance = SecurePassword(new_password)
+        # Updating the old password with the new hashed password
         df.loc[df["Username"] == f"{st.session_state['user']}", "Password"] = (
             instance.secure()
         )
