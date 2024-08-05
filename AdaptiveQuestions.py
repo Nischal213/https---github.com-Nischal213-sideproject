@@ -171,7 +171,7 @@ class AdaptiveQuestions:
             # user's performance
             if sum(self.arr) == 5:
                 difficulty = "Hard"
-            elif sum(self.arr) > 3:
+            elif sum(self.arr) >= 3:
                 difficulty = "Medium"
             else:
                 difficulty = "Easy"
