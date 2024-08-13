@@ -6,5 +6,5 @@ pip install -r requirements.txt
 ```
 Then, run this command:
 ```
-streamlit run app.py
+streamlit run main.py
 ```
