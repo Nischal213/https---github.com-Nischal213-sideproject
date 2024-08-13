@@ -9,11 +9,11 @@ from streamlit_extras.switch_page_button import switch_page
 
 # function to check if a variable is a type of the parameter
 # Has been modified to accept negative values
-def is_type(variable, type):
-    if str(variable).count("-") == 1:
-        variable = variable[1:]
+def check_type(answer, type):
+    if str(answer).count("-") == 1:
+        answer = answer[1:]
     try:
-        variable = type(variable)
+        type(answer)
         return True
     except ValueError:
         return False
@@ -23,8 +23,8 @@ def integrate():
     upper_interval, lower_interval, bigger_power, lower_power = (
         random.randint(1, 10),
         -random.randint(1, 10),
-        random.randint(5, 7),
-        random.randint(2, 4),
+        random.randint(6, 9),
+        random.randint(2, 5),
     )
     latex_equation = r"\int_{lower}^{upper} (x^{pow1} + x^{pow2}) dx"
     equation = (
@@ -42,16 +42,14 @@ def integrate():
         lower_interval**lower_power
     ) / lower_power
     answer = upper_antiderivative - lower_antiderivative
-    if str(answer).count("-"):
-        answer = -answer
     return equation, round(answer, 1)
 
 
 def differentiate():
     value_x, bigger_power, lower_power = (
         random.randint(1, 10),
-        random.randint(5, 7),
-        random.randint(2, 4),
+        random.randint(6, 9),
+        random.randint(2, 5),
     )
     latex_equation = r"\frac {dy}{dx} \, (x^{pow1} + x^{pow2}) \, \vert_{\,x={val}}"
     equation = (
@@ -66,7 +64,7 @@ def differentiate():
 
 
 def logarithmics():
-    base, exponent = random.randint(2, 5), random.randint(0, 5)
+    base, exponent = random.randint(2, 9), random.randint(0, 20)
     latex_equation = r"\log_base (x) = exponent"
     equation = latex_equation.replace("base", f"{base}").replace(
         "exponent", f"{exponent}"
@@ -76,15 +74,13 @@ def logarithmics():
     return equation, round(answer, 1)
 
 
-def powers():
+def exponents():
     base, result = random.randint(2, 10), round(random.uniform(1, 10), 1)
     latex_equation = r"base^x = ans"
     equation = latex_equation.replace("base", f"{base}").replace("ans", f"{result}")
-
     log_result = math.log(result)
     log_base = math.log(base)
     answer = log_result / log_base
-
     return equation, round(answer, 1)
 
 
@@ -133,7 +129,7 @@ func_dict = {
     "integrate": integrate(),
     "differentiate": differentiate(),
     "logs": logarithmics(),
-    "powers": powers(),
+    "powers": exponents(),
 }
 
 # storing user data and questions in the session
@@ -168,7 +164,7 @@ padding_left, invalid_format, padding_right = st.columns([1, 3, 1])
 st.markdown('<span id="error-message"></span>', unsafe_allow_html=True)
 padding_left, incorrect_answer, padding_right = st.columns([1, 3, 1])
 if button:
-    if is_type(user_ans, int) or is_type(user_ans, float):
+    if check_type(user_ans, int) or check_type(user_ans, float):
         st.markdown(
             """
             <style>

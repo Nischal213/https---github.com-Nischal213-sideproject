@@ -223,13 +223,12 @@ def leaderboards():
 
 
 if "user" not in st.session_state:
-    switch_page("error page")
+    st.session_state["user"] = "JohnDoe"
 
 if "playing" not in st.session_state:
     st.session_state["playing"] = False
 
-st.set_page_config(page_title="Math Maestro | Game Page")
-
+st.set_page_config(page_title="Math Maestro | Home Page")
 
 # custom styling
 with open("static/styles.css") as f:

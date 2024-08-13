@@ -8,9 +8,9 @@ from EquationSolver import EquationSolver
 
 
 # function to check if a variable is a type of the parameter
-def is_type(variable, type):
+def check_type(answer, type):
     try:
-        variable = type(variable)
+        answer = type(answer)
         return True
     except ValueError:
         return False
@@ -123,7 +123,7 @@ padding_left, invalid_format, padding_right = st.columns([1, 3, 1])
 st.markdown('<span id="error-message"></span>', unsafe_allow_html=True)
 padding_left, incorrect_answer, padding_right = st.columns([1, 3, 1])
 if button:
-    if is_type(user_ans, int) or is_type(user_ans, float):
+    if check_type(user_ans, int) or check_type(user_ans, float):
         st.markdown(
             """
             <style>

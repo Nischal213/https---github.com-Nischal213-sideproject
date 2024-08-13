@@ -9,6 +9,7 @@ from streamlit_extras.switch_page_button import switch_page
 if "user" not in st.session_state:
     switch_page("error page")
 
+st.set_page_config(page_title="Math Maestro | Verify Page")
 df = pd.read_csv("main_data/data.csv")
 
 
@@ -42,7 +43,6 @@ if "verification_code" not in st.session_state:
         smtp.login(email_sender, email_password)
         smtp.sendmail(email_sender, email_receiver, em.as_string())
     st.session_state["verification_code"] = random_code
-    print(random_code)
 
 st.header("Verify it's you")
 verify_code = st.text_input(

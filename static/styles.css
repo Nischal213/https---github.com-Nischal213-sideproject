@@ -167,7 +167,7 @@ body {
 .element-container:has(#easy-button)+div button {
     background-color: green;
     position: absolute;
-    transform: translate(-2.5rem, -2.6rem);
+    transform: translate(-2.5rem, -1.8rem);
 }
 
 .element-container:has(#easy-button)+div button:hover {
@@ -183,7 +183,7 @@ body {
 .element-container:has(#medium-button)+div button {
     background-color: #FF6347;
     position: absolute;
-    transform: translate(12.7rem, -3.6rem);
+    transform: translate(12.7rem, -2.8rem);
 }
 
 .element-container:has(#medium-button)+div button:hover {
@@ -199,7 +199,7 @@ body {
 .element-container:has(#hard-button)+div button {
     background-color: darkred;
     position: absolute;
-    transform: translate(28.0rem, -4.6rem);
+    transform: translate(28.0rem, -3.8rem);
 }
 
 .element-container:has(#hard-button)+div button:hover {
@@ -215,7 +215,7 @@ body {
 .element-container:has(#adaptive-button)+div button {
     background-color: blue;
     position: absolute;
-    transform: translate(44.0rem, -5.8rem);
+    transform: translate(44.0rem, -4.8rem);
 }
 
 .element-container:has(#adaptive-button)+div button:hover {

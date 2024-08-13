@@ -115,7 +115,7 @@ class AdaptiveQuestions:
             answer = base**exponent
             return equation, round(answer, 1)
 
-        def powers():
+        def exponents():
             base, result = random.randint(2, 10), round(random.uniform(1, 10), 1)
             latex_equation = r"base^x = ans"
             equation = latex_equation.replace("base", f"{base}").replace(
@@ -132,7 +132,7 @@ class AdaptiveQuestions:
             "integrate": integrate(),
             "differentiate": differentiate(),
             "logs": logarithmics(),
-            "powers": powers(),
+            "exponents": exponents(),
         }
         random_key = random.choice(list(func_dict.keys()))
         equation, answer = func_dict.get(random_key)

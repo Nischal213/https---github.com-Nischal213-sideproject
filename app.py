@@ -26,16 +26,13 @@ def is_username_valid(username):
     def only_numbers(word):
         return all(i.isdigit() for i in word)
 
-    def only_one_underscode(word):
-        return word.count("_")
-
     error_msg = ""
     if username:
         if is_username_unique(username) == False:
             error_msg = "Username already taken"
             return (False, error_msg)
-        elif not (3 <= len(username) <= 20):
-            error_msg = "Username can only be 3-20 chars long"
+        elif len(username) < 4:
+            error_msg = "Username must be longer than 3 chars"
             return (False, error_msg)
         elif has_invalid_chars(username) == True:
             error_msg = "Username may only contain letters, numbers and _"
@@ -43,7 +40,7 @@ def is_username_valid(username):
         elif only_numbers(username):
             error_msg = "Username may contain private information"
             return (False, error_msg)
-        elif only_one_underscode(username) > 1:
+        elif username.count("_") >= 2:
             error_msg = "Username may at most have one _"
             return (False, error_msg)
         else:
@@ -66,7 +63,7 @@ def is_password_valid(password):
     error_msg = ""
     if password:
         if len(password) < 8:
-            error_msg = "Password is must be at least 8 characters long"
+            error_msg = "Password must be at least 8 characters long"
             return (False, error_msg)
         elif has_special_chars(password) == False:
             error_msg = "Password must have a special character"

@@ -26,7 +26,9 @@ def is_password_correct(password, username):
         hex_password = instance.secure()
         if hex_password == get_password.values[0]:
             return True
-    except (KeyError, IndexError):
+        else:
+            return False
+    except IndexError:
         return False
 
 
