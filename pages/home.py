@@ -223,7 +223,7 @@ def leaderboards():
 
 
 if "user" not in st.session_state:
-    st.session_state["user"] = "JohnDoe"
+    switch_page("error page")
 
 if "playing" not in st.session_state:
     st.session_state["playing"] = False
