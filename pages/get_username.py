@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from streamlit_extras.switch_page_button import switch_page
 
 st.set_page_config(page_title="Math Maestro | Get Username Page")
 
@@ -9,7 +8,7 @@ with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 if "user" in st.session_state:
-    switch_page("error page")
+    st.switch_page("pages/error_page.py")
 
 
 def does_username_exist(username):
@@ -28,6 +27,6 @@ submit = st.button("Submit", type="primary")
 if submit:
     if does_username_exist(username):
         st.session_state["temp_user"] = username
-        switch_page("forgot page")
+        st.switch_page("pages/forgot_page.py")
     else:
         st.error("Username does not exist")

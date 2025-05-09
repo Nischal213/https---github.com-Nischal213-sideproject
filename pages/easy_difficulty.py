@@ -3,7 +3,6 @@ import random
 import time
 import pandas as pd
 import datetime
-from streamlit_extras.switch_page_button import switch_page
 
 
 # function to check if a variable is a type of the parameter
@@ -37,7 +36,7 @@ def animation(before_animation, after_animation, box_name, duration=1):
 
 
 if "user" not in st.session_state:
-    switch_page("error page")
+    st.switch_page("pages/error_page.py")
 
 
 # This block of code is used to ensure that if the user attempts
@@ -159,7 +158,7 @@ if button:
                 for key in keys:
                     # deletes all the added session keys
                     del st.session_state[key]
-                switch_page("game over")
+                st.switch_page("pages/game_over.py")
             before_msg = f"""
             <div id='info'>
                 <h3>Points : {st.session_state['points']}</h3>

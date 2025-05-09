@@ -3,7 +3,6 @@ import pandas as pd
 import time
 import datetime
 from AdaptiveQuestions import AdaptiveQuestions
-from streamlit_extras.switch_page_button import switch_page
 
 
 # function to check if a variable is a type of the parameter
@@ -36,7 +35,7 @@ def generate_random_question(avg_score, arr=[], diff=None):
 
 
 if "user" not in st.session_state:
-    switch_page("error page")
+    st.switch_page("pages/error_page.py")
 
 # This block of code is used to ensure that if the user attempts
 # to go back to the home page whilst in a game, it will handle
@@ -161,7 +160,7 @@ if button:
                 for key in keys:
                     # deletes all the added session keys
                     del st.session_state[key]
-                switch_page("game over")
+                st.switch_page("pages/game_over.py")
             before_msg = f"""
             <div id='info'>
                 <h3>Points : {st.session_state['points']}</h3>

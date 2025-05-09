@@ -1,6 +1,5 @@
 import streamlit as st
 import plotly.express as px
-from streamlit_extras.switch_page_button import switch_page
 
 st.set_page_config(page_title="Math Maestro | Game Over")
 # custom styling
@@ -8,7 +7,7 @@ with open("static/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 if "user" not in st.session_state:
-    switch_page("error page")
+    st.switch_page("pages/error_page.py")
 
 st.markdown(
     """
@@ -45,4 +44,4 @@ st.write(
 st.markdown("<span id='retry-btn'></span>", unsafe_allow_html=True)
 retry = st.button("Retry")
 if retry:
-    switch_page("home")
+    st.switch_page("pages/home.py")

@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from streamlit_extras.switch_page_button import switch_page
 from SecurePassword import SecurePassword
 
 st.set_page_config(page_title="Math Maestro | Login Page")
@@ -57,8 +56,8 @@ if submit_button:
             df["Username"] == f"{st.session_state['user']}", "Verified"
         ].values[0]
         if not (is_verified):
-            switch_page("verify")
+            st.switch_page("pages/verify.py")
         else:
-            switch_page("home")
+            st.switch_page("pages/home.py")
     else:
         st.warning("Not all the fields are valid")

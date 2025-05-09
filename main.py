@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from streamlit_extras.switch_page_button import switch_page
 from SecurePassword import SecurePassword
 from email_validator import validate_email, EmailNotValidError
 
@@ -143,6 +142,6 @@ if submit_button:
         # track of their personal score
         with open(f"user_data/{username}.csv", "w") as f:
             f.write(f"Points,Date")
-        switch_page("login page")
+        st.switch_page("pages/login_page.py")
     else:
         st.warning("Not all the fields are valid")

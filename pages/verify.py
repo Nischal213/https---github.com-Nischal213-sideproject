@@ -4,10 +4,9 @@ import pandas as pd
 import ssl
 import smtplib
 from email.message import EmailMessage
-from streamlit_extras.switch_page_button import switch_page
 
 if "user" not in st.session_state:
-    switch_page("error page")
+    st.switch_page("pages/error_page.py")
 
 st.set_page_config(page_title="Math Maestro | Verify Page")
 df = pd.read_csv("main_data/data.csv")
@@ -54,6 +53,6 @@ if check_button:
     if verify_code == st.session_state["verification_code"]:
         df.loc[df["Username"] == f"{st.session_state['user']}", "Verified"] = True
         df.to_csv("main_data/data.csv", index=False)
-        switch_page("home")
+        st.switch_page("pages/home.py")
     else:
         st.warning("Incorrect PIN entered , please try again")

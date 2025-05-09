@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from streamlit_extras.switch_page_button import switch_page
 
 
 def home_page():
@@ -29,16 +28,16 @@ def home_page():
     adaptive_mode = st.button("Play!", key="adaptive")
 
     if easy_mode:
-        switch_page("easy difficulty")
+        st.switch_page("pages/easy_difficulty.py")
 
     if medium_mode:
-        switch_page("medium difficulty")
+        st.switch_page("pages/medium_difficulty.py")
 
     if hard_mode:
-        switch_page("hard difficulty")
+        st.switch_page("pages/hard_difficulty.py")
 
     if adaptive_mode:
-        switch_page("adaptive difficulty")
+        st.switch_page("pages/adaptive_difficulty.py")
 
 
 def leaderboards():
@@ -223,7 +222,7 @@ def leaderboards():
 
 
 if "user" not in st.session_state:
-    switch_page("error page")
+    st.switch_page("pages/error_page.py")
 
 if "playing" not in st.session_state:
     st.session_state["playing"] = False

@@ -3,17 +3,6 @@ body {
     padding: 0;
 }
 
-
-.st-emotion-cache-e370rw.e1vs0wn31 {
-    display: none;
-}
-
-
-.st-emotion-cache-15zrgzn.e1nzilvr3 {
-    display: none;
-}
-
-
 .account-container {
     display: flex;
     justify-content: center;
@@ -32,7 +21,7 @@ body {
 }
 
 
-.st-emotion-cache-nbt3vv.ef3psqc13 {
+button[data-testid="stBaseButton-primary"] {
     display: block;
     margin: 1rem auto;
     background-color: #bc13fe;
@@ -40,30 +29,16 @@ body {
 }
 
 
-.st-emotion-cache-nbt3vv.ef3psqc13 p {
+button[data-testid="stBaseButton-primary"] p {
     font-family: 'Comic Sans MS';
     font-size: 1.2rem;
 }
 
 
-.st-emotion-cache-nbt3vv.ef3psqc13:hover {
+button[data-testid="stBaseButton-primary"]:hover {
     background-color: black;
     border-color: #bc13fe;
     color: #bc13fe;
-}
-
-
-.st-emotion-cache-sh2krr.e1nzilvr5 p {
-    font-size: 1.1rem;
-}
-
-
-.st-emotion-cache-1v0mbdj.e115fcil1 {
-    margin: 0 auto;
-}
-
-.st-emotion-cache-1v0mbdj.e115fcil1 img {
-    height: 6.25rem;
 }
 
 #header {
