@@ -5,7 +5,6 @@ import ssl
 import smtplib
 from SecurePassword import SecurePassword
 from email.message import EmailMessage
-from streamlit_extras.switch_page_button import switch_page
 
 
 st.set_page_config(page_title="Math Maestro | Forgot Page")
@@ -16,7 +15,7 @@ with open("static/styles.css") as f:
 
 
 if "temp_user" not in st.session_state:
-    switch_page("error page")
+    st.switch_page("pages/error_page.py")
 
 df = pd.read_csv("main_data/data.csv")
 
@@ -110,7 +109,7 @@ if submit:
             instance.secure()
         )
         df.to_csv("main_data/data.csv", index=False)
-        switch_page("home")
+        st.switch_page("pages/home.py")
     elif verify_code != st.session_state["verification_code"]:
         st.error("Incorrect PIN entered , please try again")
     else:
